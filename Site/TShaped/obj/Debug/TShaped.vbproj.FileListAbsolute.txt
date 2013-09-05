@@ -1,8 +1,0 @@
-c:\users\pedro\documents\visual studio 2012\Projects\TShaped\TShaped\bin\TShaped.dll
-c:\users\pedro\documents\visual studio 2012\Projects\TShaped\TShaped\bin\TShaped.pdb
-c:\users\pedro\documents\visual studio 2012\Projects\TShaped\TShaped\bin\TShaped.xml
-c:\users\pedro\documents\visual studio 2012\Projects\TShaped\TShaped\obj\Debug\TShaped.Resources.resources
-c:\users\pedro\documents\visual studio 2012\Projects\TShaped\TShaped\obj\Debug\TShaped.vbproj.GenerateResource.Cache
-c:\users\pedro\documents\visual studio 2012\Projects\TShaped\TShaped\obj\Debug\TShaped.dll
-c:\users\pedro\documents\visual studio 2012\Projects\TShaped\TShaped\obj\Debug\TShaped.xml
-c:\users\pedro\documents\visual studio 2012\Projects\TShaped\TShaped\obj\Debug\TShaped.pdb
