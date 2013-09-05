@@ -1,0 +1,1 @@
+<?phprequire("../model/class.historicosDAO.php");/** * Classe que representa uma extensão da classe DAO e inclui métodos * específicos para a tabela historicos, base T-shaped. */class historicosDAOExt extends historicosDAO {	}?>

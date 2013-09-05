@@ -1,3 +1,3 @@
 <?php
-header('location: ./controller/teste.php');
+header('location: ./controller/exec.php');
 ?>
