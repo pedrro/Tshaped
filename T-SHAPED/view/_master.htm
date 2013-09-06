@@ -5,18 +5,18 @@
     <link href="../css/bootstrap-responsive.css" rel="stylesheet" />
     <link href="../css/bootstrap.css" rel="stylesheet" />
     <link href="../css/css-nav.css" rel="stylesheet" />
-    <script src="../js/Scripts/jquery-2.0.3.js"></script>
-    <script src="../js/bootstrap.js"></script>    
+       
 </head>
 <body>
-
+<script src="../js/jquery/jquery-2.0.3.js"></script>
+    <script src="../js/bootstrap.js"></script> 
     <div class="navbar">
         <div class="navbar-inner">
             <a class="brand" href="#">T-ShapedViewer</a>
 
             <form class="navbar-form pull-right" action="../_controller/login-exec.php" method="post">
-                <input class="span2" type="text" placeholder="Email"/>
-                <input class="span2" type="password" placeholder="Password"/>
+                <input name="usuario" class="span2" type="date" placeholder="Email"/>
+                <input name="senha"   class="span2" type="password" placeholder="Password"/>
                 <button type="submit" class="btn">Sign in</button>
             </form>
         </div>
@@ -52,23 +52,24 @@
                                     <div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
                                     <div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
                                     <div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
-                                    <div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
-                                </div><!--/row-fluid-->
+                                    <div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div> 
+								</div><!--/row-fluid-->
                             </div><!--/item-->
+
 
                             <div class="item">
                                 <div class="row-fluid">
+									<div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
                                     <div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
+                                	<div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
                                     <div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
-                                    <div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
-                                    <div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
-                                </div><!--/row-fluid-->
+								</div><!--/row-fluid-->
                             </div><!--/item-->
 
                         </div><!--/carousel-inner-->
 
-                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-                        <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">&laquo;</a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">&raquo;</a>
                     </div><!--/myCarousel-->
 
                 </div><!--/well-->
@@ -98,21 +99,24 @@
         <div class="cadastro" style="width: 301px; height: 427px" >
             <h3>Cadastre-se</h3>
             <input  type="text" placeholder="Nome"/>
-            <input  type="text" placeholder="E-mail"/>
-            <input  type="text" placeholder="Insira novamente seu e-mail"/>
-            <input  type="text" placeholder="Senha"/>
+            <input  type="email" placeholder="E-mail"/>
+            <input  type="email" placeholder="Insira novamente seu e-mail"/>
+            <input  type="password" placeholder="Senha"/>
 
-            <h4>Sexo</h4>
+			<input class = "span2" type = "date" placeholder="Escolha sua data de nascimento" />
+	        <h4>Sexo</h4>
+			<div class="sexo">
             <label class="radio">
-                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked/>Masculino
+                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked />Masculino
             </label>
             <label class="radio">
                 <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"/>Feminino
             </label>
             <br />
             <center> <button class="btn btn-success" type="button" >Confirmar</button></center>
+			</div>
         </div>
-           
+		   
     </div>
 
     <footer>

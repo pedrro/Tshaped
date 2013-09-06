@@ -86,14 +86,17 @@ div.cadastro {
 
 }
 
+.cadastro input , label, h4, h3 {
+margin-left: 20px;
+}
+
 div.Conteudo2 {
 float:left;
 background-color:#C6CCB3;
 border-radius:10px;
 margin-left:20px;
 margin-bottom:20px;
-
-    
+width: 65%;
 }
 
 div.spans {
@@ -101,7 +104,13 @@ display:inline;
 
 }
 
+div.sexo {
+display: inline;
+}
 
+.span4 {
+width: 180px;
+}
 
 /* Removes the default 20px margin and creates some padding space for the indicators and controls */
 .carousel {
@@ -121,6 +130,7 @@ display:inline;
 	top: auto;
 	bottom: 0px;
 	margin-right: -19px;
+	width: 100%;
 }
 /* Changes the colour of the indicators */
 .carousel-indicators li {
