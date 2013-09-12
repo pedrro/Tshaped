@@ -1,5 +1,5 @@
 <?php
-    require('../inc/inc.autoload.php');
+    //require('../inc/inc.autoload.php');
     require('../inc/class.TemplatePower.php');
     require('../model/Class.QualificacoesDAOExt.php');
     

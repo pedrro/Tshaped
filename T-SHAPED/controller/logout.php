@@ -2,10 +2,10 @@
 
 	//session_start();
 
-	//unset($_SESSION['tip']); //somente uma vari?vel da session
-	//session_destroy(); //todas as vari?veis da session
+	unset($_SESSION);
+	session_destroy(); 
 
-	header('location: ../view/_master.htm');
+	header('location: ../controller/exec.php');
 	exit;
 
 ?>

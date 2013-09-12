@@ -1,12 +1,3 @@
-body {	background-color:#e1e1e1;
-        color:#fff;
-        font-family: Arial, sans-serif;
-        font-size:11px;
-        line-height: 14px;
-        padding:1px;
-        margin:0px;	
-}
-
 #t-shaped{
         background: #cccccc;
         margin-left:auto;	
@@ -43,3 +34,14 @@ body {	background-color:#e1e1e1;
                                         background: #E87162; 
 }
 
+#retorno{
+    margin: 0 auto;
+    width: 300px;
+    height: 30px;
+    border: 1px solid red;
+    border-radius: 4px;
+    background-color: #eb8f00; 
+    padding-top: 5px;
+    text-align: center;
+    font-size: 16px;
+}
