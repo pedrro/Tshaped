@@ -7,7 +7,8 @@
      * @return string
      */
     function formatISO($strData, $strFormat, $outputFormat="dateTime") {
-            if ($dt = DateTime::createFromFormat($strFormat, $strData)) {
+            $timezone = new DateTimeZone('UTC');
+            if ($dt = DateTime::createFromFormat($strFormat, $strData, $timezone)) {
                     if ($outputFormat == "date")
                             return $dt->format("Y-m-d");
                     elseif ($outputFormat == "dateTime")

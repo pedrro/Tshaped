@@ -58,7 +58,7 @@
             $Dados->setSobrenome($sobreNome);
             $Dados->setEmail($email);
             $Dados->setSenha(md5($senha));    
-            $Dados->setDt_nasc(formatISO($dtNasc,'d/m/Y') );
+            $Dados->setDt_nasc(formatISO($dtNasc,'d/m/Y', "date") );
             $Dados->setSexo($sexo);
 
             //Insere registros
