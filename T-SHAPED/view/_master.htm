@@ -101,12 +101,12 @@
         <div class="cadastro" style="width: 380px; height: 477px" >
             <h3>Cadastre-se</h3>
             <form id="cadastro" name="cadastro" method="POST" action="../controller/usuarios-exec.php?op=Inserir">
-                <input id="nome" name="nome" type="text" placeholder="Nome"  class = "span4" value="{nomeCadastro}" />
-                <input id="sobrenome" name="sobrenome" type="text" placeholder="Sobrenome"  class = "span4" value="{sobrenomeCadastro}"/>
-                <input id="email" name="email" type="email" placeholder="E-mail"  class = "span4" value="{emailCadastro}"/>
-                <input id="conf_email" name="conf_email" type="email" placeholder="Insira novamente seu e-mail"  class = "span4" value="{confEmailCad}"/>
-                <input id="password" name="password" type="password" placeholder="Senha"  class = "span4" value="{senhaCadastro}"/>
-                <input id="dt_nascimento" name="dt_nascimento" class = "span4" type = "text" placeholder="Escolha sua data de nascimento" value="{dtNascimento}"/>
+                <input id="nome" name="nome" type="text" placeholder="Nome"  class = "span4" value="{nomeCadastro}" required/>
+                <input id="sobrenome" name="sobrenome" type="text" placeholder="Sobrenome"  class = "span4" value="{sobrenomeCadastro}" required/>
+                <input id="email" name="email" type="email" placeholder="E-mail"  class = "span4" value="{emailCadastro}" required/>
+                <input id="conf_email" name="conf_email" type="email" placeholder="Insira novamente seu e-mail"  class = "span4" value="{confEmailCad}" required/>
+                <input id="password" name="password" type="password" placeholder="Senha"  class = "span4" value="{senhaCadastro}" required/>
+                <input id="dt_nascimento" name="dt_nascimento" class = "span4" type = "text" placeholder="Escolha sua data de nascimento" value="{dtNascimento}" required/>
                 <h4>Sexo</h4>
                 <div class="sexo">
                         <input type="radio" name="sexoRadios" id="optionsRadios1" value="M" checked />Masculino
