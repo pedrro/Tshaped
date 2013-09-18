@@ -85,6 +85,25 @@ div.cadastro {
     margin-bottom:20px;
 
 }
+div.interesse {
+float:left;
+    background-color:#C6CCB3;
+    border-radius:10px;
+    margin-left:20px;
+    margin-bottom:20px;
+    height:200px;
+    
+
+}
+div.especializacao {
+float:left;
+    background-color:#C6CCB3;
+    border-radius:10px;
+    margin-left:20px;
+    margin-bottom:20px;
+    height:200px;
+
+}
 
 .cadastro input , label, h4, h3 {
 margin-left: 20px;
