@@ -85,23 +85,26 @@ div.cadastro {
     margin-bottom:20px;
 
 }
-div.interesse {
+#interesse {
 float:left;
     background-color:#C6CCB3;
     border-radius:10px;
     margin-left:20px;
     margin-bottom:20px;
     height:200px;
+    width:500px;
     
 
 }
-div.especializacao {
+#especializacao {
 float:left;
     background-color:#C6CCB3;
     border-radius:10px;
     margin-left:20px;
     margin-bottom:20px;
     height:200px;
+    width:500px;
+   
 
 }
 
