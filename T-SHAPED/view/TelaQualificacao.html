@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
      <title>T-ShapedViewer</title>
@@ -52,7 +52,7 @@
 <div class='row-fluid'>
         <div class="cadastro">
             <h3>Cadastre suas skills</h3>
-            <form id="form-horizontal" name="cadastro" method="POST">
+            <form id="form-horizontal" name="cadastro" method="POST" style="padding-right:20px;">
                 <div class="control-group">
                     <label class="control-label" for="inputNome">Nome</label>
                     <div class="controls">
@@ -70,14 +70,14 @@
                 <div class="control-group">
                     <div class="controls" style="grid-column-align:center">
                         <h3>Tipo de Qualificação</h3>
-                        <label class="radiobutton">
+                        <label class="radiobutton" >
                             <input type="radio" name="sexoRadios" id="Radio1" value="Interesse" checked />Interesse
                             <input type="radio" name="sexoRadios" id="Radio2" value="Especializacao" />Especialização
                         </label>
                     </div>
                 </div>
 
-                <div class="nivel" >
+                <div class="nivel" style="padding-left:20px;" >
                     <h3>Nivel</h3>
                     <select>
                         <option>Iniciante</option>
@@ -88,13 +88,14 @@
                     </select>
 
                 </div>
-                <div class="form-actions">
+                
+            </form>
+			<div class="form-actions">
                       <button type="submit" class="btn btn-primary">Novo</button>
                      <button type="submit" class="btn btn-success">Salvar</button> 
                       <button type="button" class="btn btn-danger">Cancelar</button>
 
                 </div>
-            </form>
         </div>
     </div>
             </div>
