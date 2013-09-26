@@ -1,60 +1,57 @@
 <?php
-/*reescrever...*/
-/*	if (isset($_POST['usu']) && !empty($_POST['usu'])
-		&& isset($_POST['sen']) && !empty($_POST['sen']))
-	{
 
-		//pegar os parâmetros enviados por POST - ('or 1='1)
-		$usu = addslashes($_POST['usu']);
-		$sen = addslashes($_POST['sen']);
-		//$sen = sha1($sen);
+    require('../inc/class.TemplatePower.php');
+    require('../model/Class.UsuariosDAOExt.php');
+    require('../model/class.DbAdmin.php');
+    
+    if (isset($_POST['usuario']) && !empty($_POST['usuario'])
+            && isset($_POST['senha']) && !empty($_POST['senha']))
+    {
 
-		//referência ao arquivo de "auto load"
-		require_once('../inc/inc.autoload.php');
+            //pegar os parâmetros enviados por POST - ('or 1='1)
+            $usu = $_POST['usuario'];
+            $sen = md5($_POST['senha']);
 
-		//conectar com BD e consultar pra ver se tá valendo através do DAO
-		$dao = new UsuariosDAOExt();
+            //conectar com BD e consultar pra ver se tá valendo através do DAO
+            $DadosLogin = new usuariosDAOExt();
 
-		//validação do usuário e senha
-		$filtro = "username='$usu' and senha='$sen'";
-		
-		list($countReg, $vet) = UsuariosDAOExt::select($filtro);
+            //validação do usuário e senha
+            $filtro = "email='$usu' and senha='$sen'";
+	
+            list($countReg, $vet) = UsuariosDAOExt::select($filtro);
 
-		if ($countReg > 0) {
-			//SEMPRE que for usar o vetor $_SESSION
-			session_start();
+            if ($countReg > 0) {
+                
+                //SEMPRE que for usar o vetor $_SESSION
+                session_start();
 
-			//pegar o nome do cidadão e colocar em uma variável "session"
-			$idUsuarios  = $vet[0]->getIdusuarios();
-			$nomeUsuario = $vet[0]->getNome();
-			$username    = $vet[0]->getUsername();
-			$idPerfis    = $vet[0]->getIdperfis();
+                //pegar o nome do cidadão e colocar em uma variável "session"
+                $idUsuario    = $vet[0]->getId();
+                $email        = $vet[0]->getEmail();
+                $nome         = $vet[0]->getNome();
+                $foto         = $vet[0]->getFoto();
 
-			$_SESSION['idUsuarios']   = $idUsuarios;
-			$_SESSION['nomeUsuario']  = $nomeUsuario;
-			$_SESSION['username']     = $username;
+                $_SESSION['idUsuario']      = $idUsuario;
+                $_SESSION['emailUsuario']   = $email;
+                $_SESSION['nomeUsuario']    = $nome;
+                $_SESSION['fotoUsuario']    = $foto;
 
-			//usa o método que retorna o menu em um vetor tridimensional
-			$menu = $dao->listarMenu($idUsuarios, $idPerfis);
-			//echo '<pre>'; print_r($menu); echo '</pre>'; exit;
-			$_SESSION['menu'] = $menu;*/
+                //direcionar para o m?dulo correto conforme o tipo
+                $destino = '../controller/qualificacoes-exec.php?op=Listar';
 
-			//direcionar para o m?dulo correto conforme o tipo
-			$destino = '../view/usuarios.htm';
-
-			header('location: '.$destino);
-			/*exit;
-		}
-		else {
-			$msg = md5('login123');
-			header('location: ../pagina/login.php?msg='.$msg);
-			exit;
-		}
-	}
-	else
-	{
-		header('location: ../pagina/login.php');
-		exit;
-	}*/
+                header('location: '.$destino);
+                exit;
+            }
+            else {
+                    //Usuário Inválido
+                    header('location: ../controller/exec.php');
+                    exit;
+            }
+    }
+    else
+    {
+            header('location: ../controller/exec.php');
+            exit;
+    }
 
 ?>

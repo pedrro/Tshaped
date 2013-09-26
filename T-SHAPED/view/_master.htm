@@ -17,8 +17,8 @@
             <a class="brand" href="#">T-ShapedViewer</a>
 
             <form class="navbar-form pull-right" action="../controller/login-exec.php" method="post">
-                <input name="usuario" class="span3" type="email" placeholder="Email"/>
-                <input name="senha"   class="span2" type="password" placeholder="Password"/>
+                <input id="usuario" name="usuario" class="span3" type="email" placeholder="Email" required/>
+                <input id="senha" name="senha"   class="span2" type="password" placeholder="Password" required/>
                 <button type="submit" class="btn">Sign in</button>
             </form>
         </div>
@@ -101,8 +101,8 @@
         <div class="cadastro" style="width: 380px; height: 477px" >
             <h3>Cadastre-se</h3>
             <form id="cadastro" name="cadastro" method="POST" action="../controller/usuarios-exec.php?op=Inserir">
-                <input id="nome" name="nome" type="text" placeholder="Nome"  class = "span4" value="{nomeCadastro}" required/>
-                <input id="sobrenome" name="sobrenome" type="text" placeholder="Sobrenome"  class = "span4" value="{sobrenomeCadastro}" required/>
+                <input id="nome" name="nome" type="text" placeholder="Nome"  class = "span4" value="{nomeCadastro}" required autofocus/>
+                <input id="sobrenome" name="sobrenome" type="text" placeholder="Sobrenome"  class = "span4" value="{sobrenomeCadastro}" required />
                 <input id="email" name="email" type="email" placeholder="E-mail"  class = "span4" value="{emailCadastro}" required/>
                 <input id="conf_email" name="conf_email" type="email" placeholder="Insira novamente seu e-mail"  class = "span4" value="{confEmailCad}" required/>
                 <input id="password" name="password" type="password" placeholder="Senha"  class = "span4" value="{senhaCadastro}" required/>

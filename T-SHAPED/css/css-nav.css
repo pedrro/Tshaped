@@ -54,15 +54,16 @@ body {
   
   
 }
+
 #conteudo {
-padding-bottom:40px;
+    /*padding-bottom:40px;*/
 }
+
 footer {
 position: relative;
 margin-top: -40px; /* Este margin, tem que ser o mesmo valor da altura do rodapé, só que negativo */
 height: 40px; /* E aqui, fica a altura do rodapé */
-clear: both
-
+clear: both;
 }
 
 
@@ -85,26 +86,23 @@ div.cadastro {
     margin-bottom:20px;
 
 }
-#interesse {
+div.interesse {
 float:left;
     background-color:#C6CCB3;
     border-radius:10px;
     margin-left:20px;
     margin-bottom:20px;
     height:200px;
-    width:500px;
     
 
 }
-#especializacao {
+div.especializacao {
 float:left;
     background-color:#C6CCB3;
     border-radius:10px;
     margin-left:20px;
     margin-bottom:20px;
     height:200px;
-    width:500px;
-   
 
 }
 
@@ -127,6 +125,10 @@ display:inline;
 }
 
 div.sexo {
+display: inline;
+}
+
+div.tipo {
 display: inline;
 }
 
