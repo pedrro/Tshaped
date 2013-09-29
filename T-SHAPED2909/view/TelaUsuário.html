@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>T-ShapedViewer</title>
+    <link href="../css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <link href="../css/css-nav.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../js/css/custom-theme/jquery-ui-1.10.3.custom.min.css" />
+    <script src="../js/jquery/jquery-2.0.3.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="../js/bootstrap.js"></script> 
+</head>
+<body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">T-ShapedViewer</a>
+      <div class="brand">Bem vindo {nomeUsuario}</div>
+    <form class="navbar-search pull-center">
+  <input type="text" class="search-query"  placeholder="Search" >
+</form>
+      <form class="navbar-form pull-right" action="../controller/login-exec.php" method="post">
+          <li class="dropdown">
+              <a role="button" class="dropdown-toggle brand" data-toggle="dropdown">Logout</a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                  <li><a href="#">Configurações</a></li>
+                  <li><a href="#">Notificações</a></li>
+                  <li><a href="../controller/logout.php">Logout</a></li>
+              </ul>
+          </li>
+      </form>
+  </div>
+</div>
+
+    <div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <!--Sidebar content-->
+        <div class="cadastro">
+                        <h3>Cadastre suas skills</h3>
+                        <!-- START BLOCK : formulario -->
+                        <form id="form-horizontal" name="cadastro" method="POST" action="../controller/qualificacoes-exec.php">
+                            <div class="control-group">
+                                <label class="control-label" for="inputNome">Nome</label>
+                                <div class="controls">
+                                    <input type="text" id="nome" name="nome" autocomplete="on" placeholder="Nome" value="{nomeQualificacao}" required autofocus/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputDescricao">Descrição</label>
+                                <div class="controls">
+                                    <input type="text" id="descricao" name="descricao" id="descricaoQualificacao" placeholder="Descrição" value="{descricaoQualificacao}" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls" style="grid-column-align:center">
+                                    <h3>Tipo de Qualificação</h3>
+                                        <input type="radio" name="tipoRadios" id="tipoRadios1" value="I" {radioI} />Interesse
+                                        <input type="radio" name="tipoRadios" id="tipoRadios2" value="E" {radioE}/>Especialização
+                                </div>
+                            </div>
+                            <div class="nivel" >
+                                <h3>Nivel</h3>
+                                <input type="range" min="1" max="10" id="nota" name="nota" id="notaQualificacao" onkeyup="mostrarNota(this.value)" onchange="mostrarNota(this.value)" placeholder="nota" value="{notaQualificacao}" />
+                                <span id="exibeNota">{nota}</span>
+                            </div>
+
+                            <div class="form-actions">
+                                <!--<button type="submit" name="sub" class="btn btn-primary" value="Novo" >Novo</button>-->
+                                <button type="submit" name="sub" class="btn btn-success" value="Inserir" >Salvar</button> 
+                                <button type="reset" name="reset" class="btn btn-danger" value="Cancelar" >Cancelar</button> 
+                            </div>
+                            <input type="hidden" name="idQualificacao" value="{idQualificacao}"/>
+                            <input type="hidden" name="idQualificacaoUsuario" value="{idQualificacaoUsuario}"/>
+                            <input type="hidden" name="acaoInserir" value="{acaoInserir}"/>
+                        </form>
+                        <!-- END BLOCK : formulario -->
+                        <!-- START BLOCK : mensagem -->
+                        <div id="retorno">
+                            {msg}
+                        </div>
+                        <!-- END BLOCK : mensagem -->               
+                    </div>
+    </div>
+    <div class="span10">
+        <div class='row-fluid'>
+      <!--Body content-->
+        <div class="span12" style="background-color:#C6CCB3;border-radius:10px;margin-left:20px;margin-bottom:20px;width: 600px; height: 170px; padding: 5px;">
+         <legend>Interesses</legend>
+            <!-- START BLOCK : interesses -->
+            <span style="border: 1px solid #8B9958; font-size: 14px; " ><span><a href="../controller/qualificacoes-exec.php?acao=Alterar&idQualif={idQualificacao}">{nomeQualificacao}</a></span> <span><a href="#" onClick="confirmaExclusao( '../controller/qualificacoes-exec.php?acao=Excluir&idQualif={idQualificacao}');"><img src="../img/ico-del.png" border="0"/></a></span></span>
+            <!-- END BLOCK : interesses -->
+        
+        </div> <!-- fim span 12 interesse -->
+        <div class="span12 " style="background-color:#C6CCB3;border-radius:10px;margin-left:20px;margin-bottom:20px;width: 200px; height: 350px; padding: 5px; margin-left: 230px;">
+        
+            <legend>Especialidades</legend>
+            <!-- START BLOCK : especialidades -->
+            <span style="border: 1px solid #8B9958; font-size: 14px;" ><span><a href="../controller/qualificacoes-exec.php?acao=Alterar&idQualif={idQualificacao}">{nomeQualificacao}</a></span> <span><a href="#" onClick="confirmaExclusao( '../controller/qualificacoes-exec.php?acao=Excluir&idQualif={idQualificacao}');"><img src="../img/ico-del.png" border="0"/></a></span></span>
+            <!-- END BLOCK : especialidades -->
+        
+            </div> <!-- fim span 12 especialização -->
+    </div>
+        </div>
+  </div>
+</div>
+
+</body>
+</html>
