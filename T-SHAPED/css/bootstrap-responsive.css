@@ -442,6 +442,9 @@
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
+  .conteudo2 {
+      margin-left:20px;
+  }
   .row {
     margin-left: -20px;
     *zoom: 1;
@@ -784,9 +787,14 @@
 
 @media (max-width: 767px) {
   body {
-    padding-right: 20px;
-    padding-left: 20px;
+    padding-right: 0px;
+    padding-left: 0px;
   }
+  
+  .conteudo2 {
+      margin-top: 20px;
+  }
+  
   .navbar-fixed-top,
   .navbar-fixed-bottom,
   .navbar-static-top {
@@ -1081,6 +1089,9 @@
 }
 
 @media (min-width: 980px) {
+  .conteudo2 {
+      margin-left:40px;
+  }
   .nav-collapse.collapse {
     height: auto !important;
     overflow: visible !important;
