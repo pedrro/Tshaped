@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>T-ShapedViewer</title>
     <link href="../css/bootstrap-responsive.css" rel="stylesheet" />
     <link href="../css/bootstrap.css" rel="stylesheet" />
@@ -55,34 +56,34 @@
                         <!-- START BLOCK : formulario -->
                         <form id="form-horizontal" name="cadastro" method="POST" action="../controller/qualificacoes-exec.php">
                             <div class="control-group">
-                                <label class="control-label" for="inputNome">Nome</label>
                                 <div class="controls">
-                                    <input type="text" id="nome" name="nome" autocomplete="on" placeholder="Nome" value="{nomeQualificacao}" required autofocus/>
+                                    <input class="field span11" type="text" id="nome" name="nome" autocomplete="on" placeholder="Nome" value="{nomeQualificacao}" required autofocus/>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="inputDescricao">Descrição</label>
                                 <div class="controls">
-                                    <input type="text" id="descricao" name="descricao" id="descricaoQualificacao" placeholder="Descrição" value="{descricaoQualificacao}" />
+                                    <textarea class="field span11" id="descricaoQualificacao" rows="4" placeholder="Descreva a qualificação" value="{descricaoQualificacao}"></textarea>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <div class="controls" style="grid-column-align:center">
                                     <h3>Tipo de Qualificação</h3>
-                                        <input type="radio" name="tipoRadios" id="tipoRadios1" value="I" {radioI} />Interesse
-                                        <input type="radio" name="tipoRadios" id="tipoRadios2" value="E" {radioE}/>Especialização
+                                    <div class="btn-group" data-toggle="buttons-radio">
+                                        <input type="button" class="btn" value="Interesse" checked></input>
+                                        <input type="button" class="btn" value="Especialidade" checked></input>
+                                    </div>
                                 </div>
                             </div>
                             <div class="nivel" >
                                 <h3>Nivel</h3>
-                                <input type="range" min="1" max="10" id="nota" name="nota" id="notaQualificacao" onkeyup="mostrarNota(this.value)" onchange="mostrarNota(this.value)" placeholder="nota" value="{notaQualificacao}" />
+                                <input class="span11" type="range" min="1" max="10" id="nota" name="nota" id="notaQualificacao" onkeyup="mostrarNota(this.value)" onchange="mostrarNota(this.value)" placeholder="nota" value="{notaQualificacao}" />
                                 <span id="exibeNota">{nota}</span>
                             </div>
 
                             <div class="form-actions">
                                 <!--<button type="submit" name="sub" class="btn btn-primary" value="Novo" >Novo</button>-->
-                                <button type="submit" name="sub" class="btn btn-success" value="Inserir" >Salvar</button> 
                                 <button type="reset" name="reset" class="btn btn-danger" value="Cancelar" >Cancelar</button> 
+                                <button type="submit" name="sub" class="btn btn-success" value="Inserir" >Salvar</button> 
                             </div>
                             <input type="hidden" name="idQualificacao" value="{idQualificacao}"/>
                             <input type="hidden" name="idQualificacaoUsuario" value="{idQualificacaoUsuario}"/>
