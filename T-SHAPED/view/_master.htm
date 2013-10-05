@@ -102,12 +102,12 @@
                 <input id="password" name="password" type="password" placeholder="Senha"  class = "span4" value="{senhaCadastro}" required/>
                 <input id="dt_nascimento" name="dt_nascimento" class = "span4" type = "text" placeholder="Escolha sua data de nascimento" value="{dtNascimento}" required/>
                 
-                <div class="btn-group" data-toggle="buttons-radio">
+                <div class="btn-group alignment" data-toggle="buttons-radio">
                     <button type="button" class="btn" value="M" checked>Masculino</button>
                     <button type="button" class="btn" value="F">Feminino</button>
+                    <input type="hidden" id="radioVal" name="sexoRadios" value="M"/>
                 </div>
                     <p><input type="submit" value="Confirmar" class="btn btn-success"/>
-                
             </form>
             
             <!-- START BLOCK : mensagem -->
@@ -138,6 +138,15 @@
             changeYear: true
         });
     </script> 
+    
+    <script> 
+    $(function() {
+      //seta valor do campo hiden
+      $(".alignment .btn").click(function() {
+        document.getElementById('radioVal').value = $(this).val();
+      }); 
+    });
+    </script>
 </body>
 </html>
 `

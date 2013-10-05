@@ -24,7 +24,7 @@
 </head>
 <body>
     <div class="navbar">
-        <div class="navbar-inner">
+        <div class="navbar-inner container">
             <a class="brand" href="../view/usuarios-exec.php">T-ShapedViewer</a>
             <div class="brand">Bem vindo {nomeUsuario}</div>
             <form class="navbar-form pull-right" action="../controller/login-exec.php" method="post">
@@ -68,9 +68,10 @@
                             <div class="control-group">
                                 <div class="controls" style="grid-column-align:center">
                                     <h3>Tipo de Qualificação</h3>
-                                    <div class="btn-group" data-toggle="buttons-radio">
+                                    <div class="btn-group alignment" data-toggle="buttons-radio">
                                         <input type="button" class="btn" value="Interesse" checked></input>
                                         <input type="button" class="btn" value="Especialidade" checked></input>
+                                        <input type="hidden" id="radioVal" name="tipoRadios" value="Interesse"/>
                                     </div>
                                 </div>
                             </div>
@@ -108,5 +109,15 @@
             <a href="#">Contact</a>
         </div>
     </footer>
+    
+    <script> 
+    $(function() {
+      //seta valor do campo hiden
+      $(".alignment .btn").click(function() {
+        document.getElementById('radioVal').value = $(this).val();
+      }); 
+    });
+    </script>
+
 </body>
 </html>
