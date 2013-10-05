@@ -84,7 +84,7 @@ div.cadastro {
     margin-bottom:20px;
     padding-left: 20px;
     width: 320px;
-    height: 477px;
+    min-height: 477px;
 }
 
 div.interesse {
