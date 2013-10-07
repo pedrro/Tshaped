@@ -41,8 +41,8 @@
                 $_SESSION['fotoUsuario']    = $foto;
 
                 //direcionar para o m?dulo correto conforme o tipo
-                $destino = '../view/usuarios.htm';
-                //$destino = '../controller/usuarios-exec.php?op=Listar';
+                //$destino = '../view/usuarios.htm';
+                $destino = '../controller/usuarios-exec.php?op=Listar';
                 
                 header('location: '.$destino);
                 exit;

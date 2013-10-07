@@ -8,7 +8,7 @@
     require('../model/class.DbAdmin.php');
     require('../inc/inc.util.php');
 
-    $tpl = new TemplatePower("../view/_master.htm");
+    $tpl = new TemplatePower("../view/usuarios.htm");
 
     $tpl->prepare();
     
@@ -22,16 +22,17 @@
     /******************************************************
      * Listar Qualificações
     ******************************************************/    
-/*    if( isset($_REQUEST['op']) && ($_REQUEST['op'] == 'Listar') ){
+    if( isset($_REQUEST['op']) && ($_REQUEST['op'] == 'Listar') ){
 
         //Chama função para listar qualificacoes
-        listaQualif($idUsuario, $tpl);
+    //listaQualif($idUsuario, $tpl);
         
         //Seta valores default quando entra na tela pela 1 vez
         //$tpl->assign("radioI", 'checked');
         //$tpl->assign("nota", '1');
         //$tpl->assign("notaQualificacao", '1');
-        
+       
+        $tpl->assign("nomeUsuario", $nomeUsuario);
     }
 
     /******************************************************
