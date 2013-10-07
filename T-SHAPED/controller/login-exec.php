@@ -1,9 +1,13 @@
 <?php
 
     require('../inc/class.TemplatePower.php');
-    require('../model/Class.UsuariosDAOExt.php');
+    require('../model/class.UsuariosDAOExt.php');
     require('../model/class.DbAdmin.php');
-    
+
+    $tpl = new TemplatePower("../view/_master.htm");
+
+    $tpl->prepare();    
+                    
     if (isset($_POST['usuario']) && !empty($_POST['usuario'])
             && isset($_POST['senha']) && !empty($_POST['senha']))
     {
@@ -17,11 +21,11 @@
 
             //validação do usuário e senha
             $filtro = "email='$usu' and senha='$sen'";
-	
+
             list($countReg, $vet) = UsuariosDAOExt::select($filtro);
 
             if ($countReg > 0) {
-                
+
                 //SEMPRE que for usar o vetor $_SESSION
                 session_start();
 
@@ -37,15 +41,16 @@
                 $_SESSION['fotoUsuario']    = $foto;
 
                 //direcionar para o m?dulo correto conforme o tipo
-                $destino = '../controller/qualificacoes-exec.php?op=Listar';
-
+                $destino = '../view/usuarios.htm';
+                //$destino = '../controller/usuarios-exec.php?op=Listar';
+                
                 header('location: '.$destino);
                 exit;
             }
             else {
-                    //Usuário Inválido
-                    header('location: ../controller/exec.php');
-                    exit;
+
+                    $msg = 'Usuário ou Senha Inválido.';
+                    $tpl->assign("loginInvalido", $msg);                
             }
     }
     else
@@ -54,4 +59,5 @@
             exit;
     }
 
+    $tpl->printToScreen(); 
 ?>

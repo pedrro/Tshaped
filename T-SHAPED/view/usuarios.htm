@@ -1,46 +1,65 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>T-ShapedViewer</title>
     <link href="../css/bootstrap-responsive.css" rel="stylesheet" />
     <link href="../css/bootstrap.css" rel="stylesheet" />
     <link href="../css/css-nav.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../js/css/custom-theme/jquery-ui-1.10.3.custom.min.css" />
+    <script src="../js/jquery/jquery-2.0.3.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="../js/bootstrap.js"></script> 
 </head>
 <body>
-    <script src="../js/Scripts/jquery-2.0.3.js"></script>
-    <script src="../js/bootstrap.js"></script>
-    
-    
-
     <div class="navbar">
-  <div class="navbar-inner">
-    <a class="brand" href="#">T-ShapedViewer</a>
-    
-      <form class="navbar-form pull-right">
-              <ul class="nav">
-                  <li><a href="../view/usuarios.htm">Home</a></li>
-                  <li><a href="">Perfil</a></li>
-                  <li><a href="">Pesquisa</a></li>
-                  <li><a href="../controller/logout.php">Logout</a></li>
-              </ul>
-            </form>
-  </div>
-</div>
-    <div class="container">
+          <div class="navbar-inner container">
+              <a class="brand" href="#">T-ShapedViewer</a>
+              <div class="brand">Olá {nomeUsuario}</div>
+              <form class="navbar-search pull-right">
+                  <input type="text" class="search-query"  placeholder="Search" >
+              </form>
+              <form action="../controller/login-exec.php" method="post">
+                      <li class="dropdown pull-right">
+                          <a role="button" class="dropdown-toggle brand" data-toggle="dropdown">Menu</a>
+                          <ul class="dropdown-menu span4" role="menu" aria-labelledby="drop2">
+                              <li><a href="../controller/qualificacoes-exec.php?op=Listar">Editar Qualificações</a>
+                              <li><a href="../controller/logout.php">Logout</a></li>
+                          </ul>
+                      </li>
+              </form>
+          </div>
+     </div>
 
+    <!--
+    <div id="menuUsuario">
+         <h3>Menu</h3>
+         <span class="itemMenu"><a href="../controller/qualificacoes-exec.php?op=Listar">Qualificações</a></span>
+    </div>    
+    -->
+    <div class="visualizat-centro">
+        <div class="span10">
+            <div class="row-fluid">
+                <!--Body content-->
+                <div style="width: 700px; padding: 10px; margin-left: 10px; float: left; position: relative; " >
+                    <div class="interesse" style="background-color:#C6CCB3;border-radius:10px;margin-left:20px;margin-bottom:20px;width: 600px; height: 170px; padding: 5px;">
+                        <legend>Interesses</legend>
+                        <!-- START BLOCK : interesses -->
+                        <span style="border: 1px solid #8B9958; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif};" >{nomeQualificacao}</span>
+                        <!-- END BLOCK : interesses -->
+                    </div> <!-- fim span 12 interesse -->
+                    <div class="especializacao" style="background-color:#C6CCB3;border-radius:10px;margin-left:20px;margin-bottom:20px;width: 200px; height: 350px; padding: 5px; margin-left: 230px;">
+                        <legend>Especialidades</legend>
+                        <!-- START BLOCK : especialidades -->
+                        <span style="border: 1px solid #8B9958; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif};" >{nomeQualificacao}</span>
+                        <!-- END BLOCK : especialidades -->
+                    </div> <!-- fim span 12 especialização -->
+                </div>
+            </div>
+        </div>
     </div>
 
-    <footer>
-        <hr />
-        <div style="display:inline-block">
-            Criado por ...
-            <a href="">About</a>
-            <a href="">Contact</a>
 
-            
-            
-        </div>
-
-    </footer>
 </body>
 </html>

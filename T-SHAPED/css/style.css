@@ -26,6 +26,25 @@
                border:solid 1px #666666;	 			   		  		    
  }
 
+ 
+ #interesse { 
+               background: #ffffff;
+               width: 700px;
+               height: 130px;
+               margin-left:auto;	
+               margin-right:auto;		
+               border:solid 1px #666666;	 
+
+}
+
+#especializacao { 
+               background: #ffffff;
+               width: 150px;		
+               height: 400px;
+	       margin-left:auto;	
+               margin-right:auto;	
+               border:solid 1px #666666;	 			   		  		    
+ }
 .size21, .size22, .size23, .twocols { 
                                       background: #8C8A89; 
 }
