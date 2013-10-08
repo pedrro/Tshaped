@@ -1,7 +1,7 @@
 <?php
 
     require('../inc/class.TemplatePower.php');
-    require('../model/class.UsuariosDAOExt.php');
+    require('../model/Class.UsuariosDAOExt.php');
     require('../model/class.DbAdmin.php');
 
     $tpl = new TemplatePower("../view/_master.htm");
@@ -35,17 +35,19 @@
                 $nome         = $vet[0]->getNome();
                 $foto         = $vet[0]->getFoto();
 
-                $_SESSION['idUsuario']      = $idUsuario;
-                $_SESSION['emailUsuario']   = $email;
-                $_SESSION['nomeUsuario']    = $nome;
-                $_SESSION['fotoUsuario']    = $foto;
-
+                $_SESSION['idUsuario']    = $idUsuario;
+                $_SESSION['emailUsuario'] = $email;
+                $_SESSION['nomeUsuario']  = $nome;
+                $_SESSION['fotoUsuario']  = $foto;
+				
                 //direcionar para o m?dulo correto conforme o tipo
-                //$destino = '../view/usuarios.htm';
+                //$destino = '../controller/qualificacoes-exec.php?op=Listar';
                 $destino = '../controller/usuarios-exec.php?op=Listar';
+				//$destino = '../view/usuarios.htm';
                 
-                header('location: '.$destino);
+                header('location: '. $destino);
                 exit;
+
             }
             else {
 
@@ -55,7 +57,10 @@
     }
     else
     {
-            header('location: ../controller/exec.php');
+            session_start();
+			unset($_SESSION);
+			session_destroy();
+			header('location: ../controller/exec.php');
             exit;
     }
 

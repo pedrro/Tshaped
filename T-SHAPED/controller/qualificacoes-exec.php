@@ -2,6 +2,13 @@
     //Criar Sessão
     session_start();
 
+	// Verifica sessao ativa
+    if (empty($_SESSION['nomeUsuario']))
+	{
+		header('location: ../controller/exec.php');
+		exit;
+	};
+
     //require('../inc/inc.autoload.php');
     require('../inc/class.TemplatePower.php');
     require('../model/Class.qualificacoesDAOExt.php');
@@ -15,7 +22,7 @@
     $tpl->assignInclude('tshaped', "tshaped-exec.php");
 
     $tpl->prepare();
-    
+	
     //Pega dados da Sessão
     $nomeUsuario  = $_SESSION['nomeUsuario'];
     $idUsuario    = $_SESSION['idUsuario'];

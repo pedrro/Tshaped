@@ -25,14 +25,21 @@
     if( isset($_REQUEST['op']) && ($_REQUEST['op'] == 'Listar') ){
 
         //Chama função para listar qualificacoes
-    //listaQualif($idUsuario, $tpl);
+		//listaQualif($idUsuario, $tpl);
         
         //Seta valores default quando entra na tela pela 1 vez
         //$tpl->assign("radioI", 'checked');
         //$tpl->assign("nota", '1');
         //$tpl->assign("notaQualificacao", '1');
        
-        $tpl->assign("nomeUsuario", $nomeUsuario);
+        // Verifica sessao ativa
+		if (empty($_SESSION['nomeUsuario']))
+		{
+			header('location: ../controller/exec.php');
+			exit;
+		};
+		
+		$tpl->assign("nomeUsuario", $nomeUsuario);
     }
 
     /******************************************************
@@ -92,11 +99,16 @@
             list($codErro, $msgErro, $Dados) = UsuariosDAOExt::insert($Dados);
             
             if( isset($codErro) && ($codErro == '0') ){
-                /*$msg = 'Cadastrado com Sucesso!';
                 
-                $tpl->newBlock("mensagem");
-                $tpl->assign("msg", $msg);*/
-                header('location: ../view/usuarios.htm');
+				// Setar os atributos do usuario na sessao
+				$_SESSION['idUsuario']    = $Dados->getId();
+                $_SESSION['emailUsuario'] = $email;
+                $_SESSION['nomeUsuario']  = $nome;
+                $_SESSION['fotoUsuario']  = $foto;
+				
+				//header('location: ../view/usuarios.htm');
+				header('location: ../controller/usuarios-exec.php?op=Listar');
+				exit;
             }
             else{
                 $msg = 'Erro no Insert: '.$msgErro;
