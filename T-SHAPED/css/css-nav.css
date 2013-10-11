@@ -70,14 +70,10 @@ body {
 }
 
 .visualizat-centro {
-    position: absolute;
     width: 750px;
     height: 600px;
     /*border: 1px solid red;*/
-    left: 50%;
-    top:50%;
-    margin-left: -375px;
-    margin-top: -280px;
+    margin: auto;
 }
 
 .itemMenu{
@@ -109,11 +105,16 @@ a {
 
 a:hover {
   color: #005580;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .msgLogin{
     color: red;
+    /*border: 1px solid red;*/
+    width: 180px;
+    position: relative;
+    float: left;
+    margin-top: 8px;
 }
 
 div.cadastro {
@@ -145,6 +146,12 @@ float:left;
     margin-bottom:20px;
     height:200px;
 
+}
+
+.divQualif{
+    border-radius: 4px;
+    text-align: center;
+    color: #8B9958;
 }
 
 div.conteudo2 {

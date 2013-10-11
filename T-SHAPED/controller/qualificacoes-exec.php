@@ -14,7 +14,7 @@
     require('../model/Class.qualificacoesDAOExt.php');
     require('../model/Class.qualificacoes_usuariosDAOExt.php');
     require('../model/Class.usuariosDAOExt.php');
-    require('../model/Class.de_paraDAOExt.php');
+    //require('../model/Class.de_paraDAOExt.php');
     require('../model/class.DbAdmin.php');
     //require('../inc/inc.util.php');
 
@@ -63,7 +63,8 @@
         $tipo           = $_POST['tipoRadios'];
         $descricao      = $_POST['descricao'];
         $nota           = $_POST["nota"];
-        
+        $corFundoQualif = $_POST["corFundoQualif"];
+
         $permiteInsert = false;
 
         //Insert de novo registro
@@ -85,48 +86,18 @@
             if( empty($msg) ){
 
                 //Valida se qualificação já foi cadastrada 
-                list($countReg, $Qualif) = qualificacoes_usuariosDAOExt::select(" EXISTS( SELECT 1
-                                                                                          FROM QUALIFICACOES Q
-                                                                                          WHERE Q.ID = QUALIFICACOES_USUARIOS.QUALIFICACOES_ID
-                                                                                          AND Q.NOME = '".$nome."')"
-                                                                               );   
-               //die("==>".$countReg);
-                if($countReg > 0){//Caso sim
-                    
-                    //Pega id do usuario que possui a qualificaçao cadastrada
-                    $idUsuarioQuali      = $Qualif[0]->getUsuarios_id();
-                    
-                    if($idUsuarioQuali == $idUsuario){ //Verifica se existe para o usuário logado
-                        $msg = 'Qualificação já existe.';
-                        $tpl->newBlock("mensagem");
-                        $tpl->assign("msg", $msg);                        
-                    }
-                    else{ //pega id 
-                        $idQualificacao      = $Qualif[0]->getQualificacoes_id();
-                        $permiteInsert = true;
-                        
-                    }    
-                    //die("==>".$idQualificacao);
-                }
-                else{ 
-                    //Seta valores no objeto para inserir na tb qualificacoes
-                    $DadosQuali->setNome($nome);
-                    //$DadosQuali->setTipo($tipo);
-
-                    //Insere registros na tabela qualificacoes
-                    list($codErro, $msgErro, $DadosQuali) = QualificacoesDAOExt::insert($DadosQuali);  
-
-                    if( isset($codErro) && ($codErro == '0') ){                    
-                        
-                        $idQualificacao  = $DadosQuali->getId();
-                        $permiteInsert = true;
-                    }
-                }
+                $idQualificacao = $DadosQuali->buscaQualificacao($nome);
                 //die("==>".$idQualificacao);
                 //Fim Bloco de validações de formulário
 
-                if( $permiteInsert == true){
-
+                //Verifica se a qualificação já está associada a este usuario
+                if($DadosQualUsu->validaQualifUsuario($idUsuario ,$idQualificacao) ){
+                   // die("==>".$idQualificacao);
+                    $msg = 'Qualificação já existe.';
+                    $tpl->newBlock("mensagem");
+                    $tpl->assign("msg", $msg);                          
+                }
+                else{
                     //Seta valores no objeto para inserir na tb qualificacoes_usuarios
                     //$DadosQualUsu->setQualificacoes_id($DadosQuali->getId());
                     $DadosQualUsu->setQualificacoes_id($idQualificacao);
@@ -134,10 +105,11 @@
                     $DadosQualUsu->setNota($nota); 
                     $DadosQualUsu->setDescricao($descricao);
                     $DadosQualUsu->setTipo($tipo);
+                    $DadosQualUsu->setCor_fundo_qualif($corFundoQualif);
 
                     //Insere registros na tabela qualificacoes_usuarios
                     list($codErro, $msgErro, $DadosQualUsu) = Qualificacoes_usuariosDAOExt::insert($DadosQualUsu);
-
+                    //die("aki".$msgErro);        
                     if( isset($codErro) && ($codErro == '0') ){
                         
                         $msg = 'Cadastrado com Sucesso!';
@@ -164,6 +136,7 @@
                 $tpl->assign("tipoQualificacao", $tipo);
                 $tpl->assign("descricaoQualificacao", $descricao);
                 $tpl->assign("notaQualificacao", $nota);
+                $tpl->assign("corFundoQualif", $corFundoQualif);
 
                 //Mostra mensagem de erro
                 $tpl->newBlock("mensagem");
@@ -174,15 +147,11 @@
             //Chama função para listar qualificacoes
             listaQualif($idUsuario, $tpl);
         }
-        //UPdate de edição do registro
         elseif( isset($acaoInserir) && ( $acaoInserir == 'edit') ){ 
-            
+
             $DadosQuali   = new qualificacoesDAOExt();
             $DadosQualUsu = new qualificacoes_usuariosDAOExt();
 
-            $permiteUpdate = false;
-            $permiteInsert = false;
-            
             //Pega informações do formulário enviadas por POST
             $idQualificacao = $_POST['idQualificacao'];
             $nome           = $_POST['nome'];
@@ -190,126 +159,45 @@
             $descricao      = $_POST['descricao'];
             $idQualificacaoUsuario = $_POST["idQualificacaoUsuario"];     
             $nota           = $_POST["nota"];     
-                    
-            //Valida se qualificação já foi cadastrada 
-            list($countReg, $Qualif) = qualificacoes_usuariosDAOExt::select(" EXISTS( SELECT 1
-                                                                                      FROM QUALIFICACOES Q
-                                                                                      WHERE Q.ID = QUALIFICACOES_USUARIOS.QUALIFICACOES_ID
-                                                                                      AND Q.NOME = '".$nome."')"
-                                                                           );   
-
-            if($countReg > 0){//Caso sim            
-
-                //Pega id do usuario que possui a qualificaçao cadastrada
-                $idUsuarioQuali      = $Qualif[0]->getUsuarios_id();
-
-                if($idUsuarioQuali == $idUsuario){ //Verifica se existe para o usuário logado
-
-                    //Seta valores no objeto para inserir na tb qualificacoes
-                    $DadosQuali->setNome($nome);
-                    $DadosQuali->setId($idQualificacao);
-
-                    //Insere registros na tabela qualificacoes
-                    list($codErro, $msgErro, $DadosQuali) = QualificacoesDAOExt::update($DadosQuali);  
-
-                    if( isset($codErro) && ($codErro == '0') ){                    
-                        
-                        $idQualificacao  = $DadosQuali->getId();
-                        $permiteUpdate = true;
-                    }                    
-                }
-                else{ //pega id           
-                    $idQualificacao      = $Qualif[0]->getQualificacoes_id();
-                    $permiteUpdate = true;
-                }    
-             }
-             /**/
-             else{                         
-                    //Seta valores no objeto para inserir na tb qualificacoes
-                    $DadosQuali->setNome($nome);
-
-                    //Insere registros na tabela qualificacoes
-                    list($codErro, $msgErro, $DadosQuali) = QualificacoesDAOExt::insert($DadosQuali);  
-
-                    if( isset($codErro) && ($codErro == '0') ){                    
-                        
-                        $idQualificacao  = $DadosQuali->getId();
-                        $permiteInsert = true;
-                    }
-                 
-              }    
-              /**/
-              if( $permiteUpdate == true){
-
-                    //Seta valores no objeto para inserir na tb qualificacoes_usuarios
-                    //$DadosQualUsu->setQualificacoes_id($DadosQuali->getId());
-                    $DadosQualUsu->setId($idQualificacaoUsuario);
-                    $DadosQualUsu->setQualificacoes_id($idQualificacao);
-                    //$DadosQualUsu->setUsuarios_id($idUsuario);
-                    $DadosQualUsu->setNota($nota); 
-                    $DadosQualUsu->setDescricao($descricao);
-                    $DadosQualUsu->setTipo($tipo);
-
-                    //Insere registros na tabela qualificacoes_usuarios
-                    list($codErro, $msgErro, $DadosQualUsu) = Qualificacoes_usuariosDAOExt::update($DadosQualUsu);
-
-                    if( isset($codErro) && ($codErro == '0') ){
-                        
-                        $msg = 'Cadastrado com Sucesso!';
-                        $tpl->newBlock("mensagem");
-                        $tpl->assign("msg", $msg);
-
-                        //direcionar para o m?dulo correto conforme o tipo
-                        header('location: ../controller/qualificacoes-exec.php?op=Listar');
-                        exit;                    
-
-                    }
-                    else{
-                        $msg = 'Erro na inserção da qualificação! '.$msgErro;
-                        $tpl->newBlock("mensagem");
-                        $tpl->assign("msg", $msg);
-                    }
-
-              }
-              
-              if( $permiteInsert == true){
-
-                    //Seta valores no objeto para inserir na tb qualificacoes_usuarios
-                    //$DadosQualUsu->setQualificacoes_id($DadosQuali->getId());
-                    $DadosQualUsu->setQualificacoes_id($idQualificacao);
-                    $DadosQualUsu->setUsuarios_id($idUsuario);
-                    $DadosQualUsu->setNota($nota); 
-                    $DadosQualUsu->setDescricao($descricao);
-                    $DadosQualUsu->setTipo($tipo);
-
-                    //Insere registros na tabela qualificacoes_usuarios
-                    list($codErro, $msgErro, $DadosQualUsu) = Qualificacoes_usuariosDAOExt::insert($DadosQualUsu);
-
-                    if( isset($codErro) && ($codErro == '0') ){
-
-                        $msg = 'Cadastrado com Sucesso!';
-                        $tpl->newBlock("mensagem");
-                        $tpl->assign("msg", $msg);
-
-                        //direcionar para o m?dulo correto conforme o tipo
-                        header('location: ../controller/qualificacoes-exec.php?op=Listar');
-                        exit;                    
-
-                    }
-                    else{
-                        $msg = 'Erro na inserção da qualificação! '.$msgErro;
-                        $tpl->newBlock("mensagem");
-                        $tpl->assign("msg", $msg);
-                    }
-
-              }              
+            $corFundoQualif = $_POST["corFundoQualif"];
             
-        //Chama função para listar qualificacoes
-        listaQualif($idUsuario, $tpl);
+            //Valida se qualificação já foi cadastrada 
+            $idQualificacao = $DadosQuali->buscaQualificacao($nome);
+            //die("==>".$idQualificacao);
+
+            //Seta valores no objeto para atualizar na tb qualificacoes_usuarios
+            $DadosQualUsu->setQualificacoes_id($DadosQuali->getId());
+            $DadosQualUsu->setId($idQualificacaoUsuario);
+            $DadosQualUsu->setQualificacoes_id($idQualificacao);
+            //$DadosQualUsu->setUsuarios_id($idUsuario);
+            $DadosQualUsu->setNota($nota); 
+            $DadosQualUsu->setDescricao($descricao);
+            $DadosQualUsu->setTipo($tipo);
+            $DadosQualUsu->setCor_fundo_qualif($corFundoQualif);
+
+            //Insere registros na tabela qualificacoes_usuarios
+            list($codErro, $msgErro, $DadosQualUsu) = Qualificacoes_usuariosDAOExt::update($DadosQualUsu);
+                //die($msgErro);
+            if( isset($codErro) && ($codErro == '0') ){
+
+                $msg = 'Atualizado com Sucesso!';
+                $tpl->newBlock("mensagem");
+                $tpl->assign("msg", $msg);
+
+                //direcionar para o m?dulo correto conforme o tipo
+                header('location: ../controller/qualificacoes-exec.php?op=Listar');
+                exit;                    
+
+            }
+            else{
+                $msg = 'Erro na atualização da qualificação! '.$msgErro;
+                $tpl->newBlock("mensagem");
+                $tpl->assign("msg", $msg);
+            }                
+        }       
 
         ///Seta valores default
         $tpl->assign("radioI", 'checked');
-        }
     }
     /******************************************************
      * Edição de Qualificações(seleciona registro)
@@ -346,6 +234,8 @@
                  $descricaoQualificacao = $lstDadosQualUsu[0]->getDescricao();    
                  $tipoQualificacao      = $lstDadosQualUsu[0]->getTipo();
                  $notaQualificacao      = $lstDadosQualUsu[0]->getNota();
+                 $corFundoQualif        = $lstDadosQualUsu[0]->getCor_fundo_qualif();
+                 //$fontQualif            = $lstDadosQualUsu[0]->getFont_qualif;
 
                  $tpl->assign("idQualificacao", $idQualificacao);
                  $tpl->assign("nomeQualificacao", $nomeQualificacao);
@@ -359,6 +249,7 @@
                  $tpl->assign("descricaoQualificacao", $descricaoQualificacao);
                  $tpl->assign("idQualificacaoUsuario", $idQualificacaoUsuario);
                  $tpl->assign("notaQualificacao", $notaQualificacao);
+                 $tpl->assignGlobal("corFundoQualif", $corFundoQualif);
                  $tpl->assign("nota", $notaQualificacao);
                  $tpl->assign("acaoInserir", 'edit');
 
@@ -378,13 +269,8 @@
         
         list($codErro, $msgErro) = Qualificacoes_usuariosDAOExt::delete($where);
         
-        if($codErro == 0 ){
+        if($codErro > 0 ){
             
-            $where2 = 'id = '.$idQualificacao;
-            
-            list($codErro, $msgErro) = QualificacoesDAOExt::delete($where2);
-        }
-        else{
             die("erro ao excluir registro.");
         }
         
@@ -400,46 +286,6 @@
     ******************************************************/       
     function listaQualif($idUsuario, $tpl){
                         
-        //$DadosQuali   = new qualificacoesDAOExt();
-        //$DadosUsuario = new usuariosDAOExt(); 
-
-        /*
-        $filtro = ' EXISTS(
-                            SELECT * 
-                            FROM usuarios u
-                                ,qualificacoes_usuarios qu
-                            WHERE u.id = qu.usuarios_id
-                              AND qualificacoes.id = qu.qualificacoes_id
-                              AND u.id = '.$idUsuario.')';
-        
-        //Busca dados de qualificações
-        list($countReg, $DadosQuali) = qualificacoesDAOExt::select($filtro);
-
-        if($countReg > 0){
-            
-           foreach ($DadosQuali as $i => $lstQualif) {
-
-                $idQualificacao   = $lstQualif->getId();
-                $nomeQualificacao = $lstQualif->getNome();
-                $tipoQualificacao = $lstQualif->getTipo();
-        
-                if($tipoQualificacao == 'I'){
-                    $tpl->newBlock("interesses");
-                    $tpl->assign("nivel_qualif", $sizeQualif);
-                    $tpl->assign("idQualificacao", $idQualificacao);
-                    $tpl->assign("nomeQualificacao", $nomeQualificacao);
-                }
-                else{
-                    $tpl->newBlock("especialidades");
-                    $tpl->assign("nivel_qualif", $sizeQualif);
-                    $tpl->assign("idQualificacao", $idQualificacao);
-                    $tpl->assign("nomeQualificacao", $nomeQualificacao);
-                }
-                            
-            }
-
-        //}    
-        */
         $filtro1 = ' id = '.$idUsuario;
         
         //Busca dados de usuarios
@@ -448,12 +294,6 @@
         if($countReg > 0){
            foreach ($DadosUsuario as $i => $lstUsuario) {     
                $objUsuario = $lstUsuario;
-               /*
-               $cor_fundo_t = $lstUsuario->getCor_fundo_t();
-
-               $tpl->assignGlobal("cor_fundo_t", $cor_fundo_t);
-                * 
-                */
                
            }   
            
@@ -464,17 +304,8 @@
         }
         
         
-        //$filtro2 = ' usuarios_id = '.$idUsuario.' and qualificacoes_Id = '.$idQualificacao;
-        
-        //Busca dados de qualificacoes_usuarios
-        //list($countReg, $DadosQualifUsu) = qualificacoes_usuariosDAOExt::select($filtro2);   
-        
         $DadosQualifUsu = $objUsuario->getQualificacoes();
-        /*
-        echo '<pre>';
-        print_r($DadosQualifUsu);
-        echo '</pre>';
-        */
+
         $countReg = count($DadosQualifUsu);
   
         if($countReg > 0){
@@ -509,22 +340,8 @@
                 $tpl->assign("nomeQualificacao", $nomeQualificacao);
                 //$tpl->assign("nivel_qualif", $objDePara->getPara());
                
-               //$tpl->assignGlobal("nivel_qualif", $objDePara->getPara());
-               /*
-               list($countReg, $DadosDePara) = De_paraDAOExt::select(" descricao='SIZE_QUALIF' and de=".$nivel_qualif);   
-               if($countReg > 0){
-
-                    foreach ($DadosDePara as $i => $lstDadosDePara) {   
-                        $sizeQualif = $lstDadosDePara->getPara();
-                        //echo($sizeQualif);
-                    }  
-               } 
-                * 
-                */   
-               //echo($sizeQualif);
-//               $tpl->assignGlobal("nivel_qualif", $sizeQualif);
-               $tpl->assignGlobal("cor_fundo_qualif", $cor_fundo_qualif);
-               $tpl->assignGlobal("font_qualif", $font_qualif);
+               $tpl->assign("cor_fundo_qualif", $cor_fundo_qualif);
+               $tpl->assign("font_qualif", $font_qualif);
            }   
            //die();
         }        

@@ -17,7 +17,7 @@
     $idUsuario    = $_SESSION['idUsuario'];
     $emailUsuario = $_SESSION['emailUsuario'];
 //die($idUsuario);
-//print_r($_REQUEST);
+//print_r($_SESSION);
 //die();
     /******************************************************
      * Listar Qualificações
@@ -25,21 +25,16 @@
     if( isset($_REQUEST['op']) && ($_REQUEST['op'] == 'Listar') ){
 
         //Chama função para listar qualificacoes
-		//listaQualif($idUsuario, $tpl);
+        listaQualif($idUsuario, $tpl);
         
-        //Seta valores default quando entra na tela pela 1 vez
-        //$tpl->assign("radioI", 'checked');
-        //$tpl->assign("nota", '1');
-        //$tpl->assign("notaQualificacao", '1');
-       
         // Verifica sessao ativa
-		if (empty($_SESSION['nomeUsuario']))
-		{
-			header('location: ../controller/exec.php');
-			exit;
-		};
-		
-		$tpl->assign("nomeUsuario", $nomeUsuario);
+        if (empty($_SESSION['nomeUsuario']))
+        {
+                header('location: ../controller/exec.php');
+                exit;
+        };
+
+        $tpl->assignGlobal("nomeUsuario", $nomeUsuario);
     }
 
     /******************************************************
@@ -144,8 +139,7 @@
     /******************************************************
      * FUNÇÕES
     ******************************************************/       
-/*    function listaQualif($idUsuario, $tpl){
-                        
+    function listaQualif($idUsuario, $tpl){
 
         $filtro1 = ' id = '.$idUsuario;
         
@@ -165,11 +159,10 @@
         
         $DadosQualifUsu = $objUsuario->getQualificacoes();
         
-        //VOLTAR AQUI      
-        echo '<pre>';
+        /*echo '<pre>';
         print_r($DadosQualifUsu);
         echo '</pre>';
-        die("entrei".$countReg);
+        die("entrei".$countReg);*/
         
         $countReg = count($DadosQualifUsu);
   
@@ -204,13 +197,12 @@
                 $tpl->assign("idQualificacao", $idQualificacao);
                 $tpl->assign("nomeQualificacao", $nomeQualificacao);
                 //  $tpl->assignGlobal("nivel_qualif", $sizeQualif);
-               $tpl->assignGlobal("cor_fundo_qualif", $cor_fundo_qualif);
-               $tpl->assignGlobal("font_qualif", $font_qualif);
+               $tpl->assign("cor_fundo_qualif", $cor_fundo_qualif);
+               $tpl->assign("font_qualif", $font_qualif);
            }   
            //die();
         }        
         
-        $tpl->newBlock("formulario");
-}  */  
-
+        //$tpl->newBlock("formulario");
+}  
 ?>
