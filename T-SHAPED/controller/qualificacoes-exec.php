@@ -48,6 +48,7 @@
         $tpl->assign("radioI", 'checked');
         $tpl->assign("nota", '1');
         $tpl->assign("notaQualificacao", '1');
+        $tpl->assignGlobal("corFundoQualif", '#FF0000');
         
     }
     /******************************************************
