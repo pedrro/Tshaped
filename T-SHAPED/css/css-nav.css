@@ -60,7 +60,7 @@ body {
 
 #visualizat{
     width: 750px;
-    height: 600px;
+    min-height: 600px;
     border: 1px solid white;
     float:left;
     margin-left: 20px;
@@ -71,7 +71,7 @@ body {
 
 .visualizat-centro {
     width: 750px;
-    height: 600px;
+    min-height: 600px;
     /*border: 1px solid red;*/
     margin: auto;
 }
@@ -135,9 +135,7 @@ div.interesse {
     border-radius:10px;
     margin-left:20px;
     margin-bottom:20px;
-    height:200px;
-    
-
+    min-height:200px;
 }
 div.especializacao {
 float:left;
@@ -145,9 +143,9 @@ float:left;
     border-radius:10px;
     margin-left:20px;
     margin-bottom:20px;
-    height:200px;
+    min-height:200px;
 
-}
+}*/
 
 .divQualif{
     border-radius: 4px;
