@@ -1,1 +1,0 @@
-<?phprequire("../model/class.qualificacoesDAO.php");/** * Classe que representa uma extensão da classe DAO e inclui métodos * específicos para a tabela qualificacoes, base T-shaped. */class qualificacoesDAOExt extends qualificacoesDAO {	}?>

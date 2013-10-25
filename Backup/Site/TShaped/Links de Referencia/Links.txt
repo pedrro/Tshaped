@@ -1,4 +1,0 @@
-﻿Bootstrap: http://getbootstrap.com/
-Documentação 2.3.2: http://getbootstrap.com/2.3.2/
-Exemplos bootstrap: http://bootsnipp.com/
-Jquery: http://jquery.com/

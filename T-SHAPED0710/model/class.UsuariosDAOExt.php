@@ -1,1 +1,0 @@
-<?phprequire("../model/class.usuariosDAO.php");/** * Classe que representa uma extensão da classe DAO e inclui métodos * específicos para a tabela usuarios, base T-shaped. */class usuariosDAOExt extends usuariosDAO {	}?>
