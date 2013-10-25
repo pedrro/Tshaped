@@ -54,7 +54,11 @@
                     <span class="divQualif" style="display: inline-block; padding: 4px; border: 2px solid #8B9958; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif};" ><span><a href="../controller/qualificacoes-exec.php?acao=Alterar&idQualif={idQualificacao}">{nomeQualificacao}</a></span> <span><a href="#" onClick="confirmaExclusao( '../controller/qualificacoes-exec.php?acao=Excluir&idQualif={idQualificacao}');"><img src="../img/ico-del.png" border="0"/></a></span></span>
                     <!-- END BLOCK : especialidades -->
                 </div>
+                
             </div>
+                <div class="editaT" style="float:right; width: 150px; height: 100px; padding: 5px;background-color:#C6CCB3;">
+                    exemplo de nova div
+                </div>
             </div>
         </div>
     </div>
@@ -70,12 +74,18 @@
             </div>
             <div class="control-group">
                 <div class="controls">
-                    <textarea class="span4" id="descricao" name="descricao" rows="4" placeholder="Descreva a qualificação" value="{descricaoQualificacao}">{descricaoQualificacao}</textarea>
+                    <textarea class="span4" id="descricao" name="descricao" rows="3" placeholder="Descreva a qualificação" value="{descricaoQualificacao}">{descricaoQualificacao}</textarea>
+                </div>
+            </div>
+            <h4>URL Imagem</h4>
+            <div class="control-group">
+                <div class="controls">
+                    <input class="span4" type="text" id="urlImg" name="urlImg"  placeholder="Insira o endereço de uma imagem" value="{urlImgVal}"/>
                 </div>
             </div>
             <div class="control-group">
                 <div class="controls">
-                    <h3>Tipo de Qualificação</h3>
+                    <h4>Tipo de Qualificação</h4>
                     <div class="btn-group alignment" data-toggle="buttons-radio">
                         <button type="button" class="btn" value="I" checked="checked">Interesse</button>
                         <button type="button" class="btn" value="E" >Especialidade</button>
@@ -84,11 +94,21 @@
                 </div>
             </div>
             <div class="nivel" >
-                <h3>Nivel</h3>
+                <h4>Nivel</h4>
                 <input class="span4" type="range" min="1" max="10" id="nota" name="nota" id="notaQualificacao" onkeyup="mostrarNota(this.value)" onchange="mostrarNota(this.value)" placeholder="nota" value="{notaQualificacao}" />
                 <span id="exibeNota">{nota}</span>
             </div>
-            <div class="control"><h3>Cor</h3>
+            <div class="control"><h4>Cor de fundo</h4>
+                <div id="wColorPicker" class="hoverBox" style="width: 30px; height: 30px; display: inline-block; border: 1px dashed red;"></div>
+                <input type="hidden" id="cor_fundo_qualif" name="corFundoQualif" value="{corFundoQualif}"/>                            
+            </div>
+            <h4>Letra</h4>
+            <div class="control-group">
+                <div class="controls">
+                    <input class="span4" type="text" id="font" name="font"  placeholder="Escolha uma" value="{fontVal}"/>
+                </div>
+            </div>
+            <div class="control"><h4>Cor da letra</h4>
                 <div id="wColorPicker" class="hoverBox" style="width: 30px; height: 30px; display: inline-block; border: 1px dashed red;"></div>
                 <input type="hidden" id="cor_fundo_qualif" name="corFundoQualif" value="{corFundoQualif}"/>                            
             </div>

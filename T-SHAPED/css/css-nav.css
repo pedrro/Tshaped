@@ -76,6 +76,14 @@ body {
     margin: auto;
 }
 
+#editaT {
+ float:right; 
+ width: 150px; 
+ height: 100px;
+ padding: 5px;
+ background-color:#C6CCB3;"
+}
+
 .itemMenu{
     padding: 5px;
     margin-left: 5px;
