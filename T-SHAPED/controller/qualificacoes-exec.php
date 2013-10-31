@@ -48,7 +48,8 @@
         $tpl->assign("radioI", 'checked');
         $tpl->assign("nota", '1');
         $tpl->assign("notaQualificacao", '1');
-        $tpl->assignGlobal("corFundoQualif", '#FF0000');
+        $tpl->assign("corFundoQualif", '#FFFFFF');
+        $tpl->assign("corFontQualif", '#000000');
         
     }
     /******************************************************
@@ -65,6 +66,8 @@
         $descricao      = $_POST['descricao'];
         $nota           = $_POST["nota"];
         $corFundoQualif = $_POST["corFundoQualif"];
+        $corLetraQualif = $_POST["corLetraQualif"];
+        $fontQualif     = $_POST["fontQualif"];
 
         $permiteInsert = false;
 
@@ -107,6 +110,8 @@
                     $DadosQualUsu->setDescricao($descricao);
                     $DadosQualUsu->setTipo($tipo);
                     $DadosQualUsu->setCor_fundo_qualif($corFundoQualif);
+                    $DadosQualUsu->setcor_font_qualif($corLetraQualif);
+                    $DadosQualUsu->setFont_qualif($fontQualif);
 
                     //Insere registros na tabela qualificacoes_usuarios
                     list($codErro, $msgErro, $DadosQualUsu) = Qualificacoes_usuariosDAOExt::insert($DadosQualUsu);
@@ -161,6 +166,8 @@
             $idQualificacaoUsuario = $_POST["idQualificacaoUsuario"];     
             $nota           = $_POST["nota"];     
             $corFundoQualif = $_POST["corFundoQualif"];
+            $corLetraQualif = $_POST["corLetraQualif"];
+            $fontQualif     = $_POST["fontQualif"];
             
             //Valida se qualificação já foi cadastrada 
             $idQualificacao = $DadosQuali->buscaQualificacao($nome);
@@ -175,6 +182,8 @@
             $DadosQualUsu->setDescricao($descricao);
             $DadosQualUsu->setTipo($tipo);
             $DadosQualUsu->setCor_fundo_qualif($corFundoQualif);
+            $DadosQualUsu->setcor_font_qualif($corLetraQualif);
+            $DadosQualUsu->setFont_qualif($fontQualif);
 
             //Insere registros na tabela qualificacoes_usuarios
             list($codErro, $msgErro, $DadosQualUsu) = Qualificacoes_usuariosDAOExt::update($DadosQualUsu);
@@ -236,7 +245,9 @@
                  $tipoQualificacao      = $lstDadosQualUsu[0]->getTipo();
                  $notaQualificacao      = $lstDadosQualUsu[0]->getNota();
                  $corFundoQualif        = $lstDadosQualUsu[0]->getCor_fundo_qualif();
-                 //$fontQualif            = $lstDadosQualUsu[0]->getFont_qualif;
+                 $corFontQualif         = $lstDadosQualUsu[0]->getCor_font_qualif();
+                 $fontQualif            = $lstDadosQualUsu[0]->getFont_qualif();
+            
 
                  $tpl->assign("idQualificacao", $idQualificacao);
                  $tpl->assign("nomeQualificacao", $nomeQualificacao);
@@ -247,10 +258,17 @@
                  else{
                      $tpl->assign("radioE", 'checked');
                  }
+                
+                $tpl->assign("nivel_qualif", $sizeQualif);
+                $tpl->assign("nomeQualificacao", $nomeQualificacao);
+                //$tpl->assign("nivel_qualif", $objDePara->getPara());
+
                  $tpl->assign("descricaoQualificacao", $descricaoQualificacao);
                  $tpl->assign("idQualificacaoUsuario", $idQualificacaoUsuario);
                  $tpl->assign("notaQualificacao", $notaQualificacao);
                  $tpl->assignGlobal("corFundoQualif", $corFundoQualif);
+                 $tpl->assignGlobal("corFontQualif", $corFontQualif);
+                 $tpl->assign("fontQualif", $fontQualif);
                  $tpl->assign("nota", $notaQualificacao);
                  $tpl->assign("acaoInserir", 'edit');
 
@@ -320,6 +338,7 @@
                
                $nivel_qualif     = $lstDadosQualifUsu->getNota();
                $cor_fundo_qualif = $lstDadosQualifUsu->getCor_fundo_qualif();
+               $cor_font_qualif  = $lstDadosQualifUsu->getCor_font_qualif();
                $font_qualif      = $lstDadosQualifUsu->getFont_qualif();
                $sizeQualif       = $lstDadosQualifUsu->getFont_qualif();
                $tipoQualificacao = $lstDadosQualifUsu->getTipo();
@@ -340,8 +359,9 @@
                 $tpl->assign("idQualificacao", $idQualificacao);
                 $tpl->assign("nomeQualificacao", $nomeQualificacao);
                 //$tpl->assign("nivel_qualif", $objDePara->getPara());
-               
+
                $tpl->assign("cor_fundo_qualif", $cor_fundo_qualif);
+               $tpl->assign("cor_font_qualif", $cor_font_qualif);
                $tpl->assign("font_qualif", $font_qualif);
            }   
            //die();

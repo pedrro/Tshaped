@@ -180,6 +180,7 @@
                $font_qualif      = $lstDadosQualifUsu->getFont_qualif();
                $sizeQualif       = $lstDadosQualifUsu->getFont_qualif();
                $tipoQualificacao = $lstDadosQualifUsu->getTipo();
+               $corFontQualif    = $lstDadosQualifUsu->getCor_font_qualif();
                
                $objDePara = $lstDadosQualifUsu->getDePara();
                $sizeQualif = $objDePara->getPara();
@@ -199,6 +200,7 @@
                 //  $tpl->assignGlobal("nivel_qualif", $sizeQualif);
                $tpl->assign("cor_fundo_qualif", $cor_fundo_qualif);
                $tpl->assign("font_qualif", $font_qualif);
+               $tpl->assign("corFontQualif", $corFontQualif);
            }   
            //die();
         }        

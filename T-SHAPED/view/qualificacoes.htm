@@ -44,31 +44,30 @@
                 <div class="interesse" style="width: 600px; height: 170px; padding: 5px; background-color:{cor_fundo_t};">
                     <legend>Interesses</legend>
                     <!-- START BLOCK : interesses -->
-                    <span class="divQualif" style="display: inline-block; padding: 4px; border: 2px solid #8B9958; font-size: {nivel_qualif}px;  background-color:{cor_fundo_qualif};" ><span><a href="../controller/qualificacoes-exec.php?acao=Alterar&idQualif={idQualificacao}">{nomeQualificacao}</a></span> <span><a href="#" onClick="confirmaExclusao( '../controller/qualificacoes-exec.php?acao=Excluir&idQualif={idQualificacao}');"><img src="../img/ico-del.png" border="0"/></a></span></span>
+                    <span class="divQualif" style="display: inline-block; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif};" >
+                    <span><a href="../controller/qualificacoes-exec.php?acao=Alterar&idQualif={idQualificacao}" style="color:{cor_font_qualif}; font-family:{font_qualif}">{nomeQualificacao}</a></span> <span><a href="#" onClick="confirmaExclusao( '../controller/qualificacoes-exec.php?acao=Excluir&idQualif={idQualificacao}');"><img src="../img/ico-del.png" border="0"/></a></span></span>
                     <!-- END BLOCK : interesses -->
                 </div>
 
                 <div class="especializacao" style="width: 210px; height: 350px; padding: 5px; margin-left: 220px; background-color:{cor_fundo_t};">
                     <legend>Especialidades</legend>
                     <!-- START BLOCK : especialidades -->
-                    <span class="divQualif" style="display: inline-block; padding: 4px; border: 2px solid #8B9958; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif};" ><span><a href="../controller/qualificacoes-exec.php?acao=Alterar&idQualif={idQualificacao}">{nomeQualificacao}</a></span> <span><a href="#" onClick="confirmaExclusao( '../controller/qualificacoes-exec.php?acao=Excluir&idQualif={idQualificacao}');"><img src="../img/ico-del.png" border="0"/></a></span></span>
+                    <span class="divQualif" style="display: inline-block; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif};" >
+                    <span><a href="../controller/qualificacoes-exec.php?acao=Alterar&idQualif={idQualificacao}" style="color:{cor_font_qualif}; font-family:{font_qualif}">{nomeQualificacao}</a></span> <span><a href="#" onClick="confirmaExclusao( '../controller/qualificacoes-exec.php?acao=Excluir&idQualif={idQualificacao}');"><img src="../img/ico-del.png" border="0"/></a></span></span>
                     <!-- END BLOCK : especialidades -->
                 </div>
                 
             </div>
-                <div class="editaT" style="float:right; width: 150px; height: 100px; padding: 5px;background-color:#C6CCB3;">
-                    <h4>Tipo da Borda</h4>
-                    <div class="control"><h4>Cor de fundo</h4>
-                        <div id="wColorPicker" class="hoverBox" style="width: 30px; height: 30px; display: inline-block; border: 1px dashed red;">
-                        </div>
-                        <input type="hidden" id="cor_fundo_qualif" name="corFundoQualif" value="{corFundoQualif}"/>
+                <div class="editaT" style="float:right; padding: 5px; margin-right: 50px; background-color:#C6CCB3;">
+                    <div class="control"><h4>Cor de fundo do T</h4>
+                        <input type="color" id="cor_fundo_qualif" name="corFundoQualif" value="{cor_fundo_t}"/>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="cadastro">
+    <div class="cadastro"> 
         <h3>Qualificação</h3>
         <!-- START BLOCK : formulario -->
         <form id="form-horizontal" name="cadastro" method="POST" action="../controller/qualificacoes-exec.php">
@@ -85,7 +84,7 @@
             <h4>URL Imagem</h4>
             <div class="control-group">
                 <div class="controls">
-                    <input class="span4" type="text" id="urlImg" name="urlImg"  placeholder="Insira o endereço de uma imagem" value="{urlImgVal}"/>
+                    <input class="span4" type="url" id="urlImg" name="urlImg"  placeholder="Insira o endereço de uma imagem" value="{urlImgVal}"/>
                 </div>
             </div>
             <div class="control-group">
@@ -104,18 +103,16 @@
                 <span id="exibeNota">{nota}</span>
             </div>
             <div class="control"><h4>Cor de fundo</h4>
-                <div id="wColorPicker" class="hoverBox" style="width: 30px; height: 30px; display: inline-block; border: 1px dashed red;"></div>
-                <input type="hidden" id="cor_fundo_qualif" name="corFundoQualif" value="{corFundoQualif}"/>                            
+                <input type="color" id="cor_fundo_qualif" name="corFundoQualif" value="{corFundoQualif}"/>                            
             </div>
             <h4>Letra</h4>
             <div class="control-group">
                 <div class="controls">
-                    <input class="span4" type="text" id="font" name="font"  placeholder="Escolha uma" value="{fontVal}"/>
+                    <input class="span4" type="text" id="font" name="fontQualif"  placeholder="Escolha uma" value="{fontQualif}"/>
                 </div>
             </div>
             <div class="control"><h4>Cor da letra</h4>
-                <div id="wColorPicker" class="hoverBox" style="width: 30px; height: 30px; display: inline-block; border: 1px dashed red;"></div>
-                <input type="hidden" id="cor_fundo_qualif" name="corFundoQualif" value="{corFundoQualif}"/>                            
+                <input type="color" id="cor_letra_qualif" name="corLetraQualif" value="{corFontQualif}"/>                            
             </div>
             <div class="form-actions">
                 <!--<button type="submit" name="sub" class="btn btn-primary" value="Novo" >Novo</button>-->
