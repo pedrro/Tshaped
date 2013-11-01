@@ -35,7 +35,27 @@
     
     //Mensagem de Bem Vindo com nome do usuário por sessão
     $tpl->assign("nomeUsuario", $nomeUsuario);
+    /******************************************************
+     * Salvar a cor do fundo do T
+    ******************************************************/    
+    if( isset($_REQUEST['op']) && ($_REQUEST['op'] == 'corDoT') ){
+        $corFundoT  = $_POST['corFundoT'];
+        //Chama função para listar qualificacoes
+        $DadosUsuario = new usuariosDAOExt();
+        
+        $filtro1 = ' id = '.$idUsuario;
+        
+        //Busca dados de usuarios
+        list($countReg, $DadosUsuario) = usuariosDAOExt::select($filtro1);
 
+        $DadosUsuario[0]->setCor_fundo_t($corFundoT);
+
+        list($codErro, $DadosQualUsu) = usuariosDAOExt::update($DadosUsuario[0]);
+            //die($msgErro);
+        
+        header('location: ../controller/qualificacoes-exec.php?op=Listar');
+            exit;                    
+    }
     /******************************************************
      * Listar Qualificações
     ******************************************************/    

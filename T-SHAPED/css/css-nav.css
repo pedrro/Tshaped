@@ -76,12 +76,12 @@ body {
     margin: auto;
 }
 
-#editaT {
- float:right; 
- width: 150px; 
- height: 100px;
- padding: 5px;
- background-color:#C6CCB3;"
+div.editaT {
+ float:left; 
+ border-radius: 3px;
+ margin-top: 232px;
+ margin-left: 20px;
+ width: 220px; 
 }
 
 .itemMenu{

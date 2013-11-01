@@ -56,12 +56,14 @@
                     <span><a href="../controller/qualificacoes-exec.php?acao=Alterar&idQualif={idQualificacao}" style="color:{cor_font_qualif}; font-family:{font_qualif}">{nomeQualificacao}</a></span> <span><a href="#" onClick="confirmaExclusao( '../controller/qualificacoes-exec.php?acao=Excluir&idQualif={idQualificacao}');"><img src="../img/ico-del.png" border="0"/></a></span></span>
                     <!-- END BLOCK : especialidades -->
                 </div>
-                
-            </div>
-                <div class="editaT" style="float:right; padding: 5px; margin-right: 50px; background-color:#C6CCB3;">
+                <div class="editaT container">
                     <div class="control"><h4>Cor de fundo do T</h4>
-                        <input type="color" id="cor_fundo_qualif" name="corFundoQualif" value="{cor_fundo_t}"/>
+                        <form name="setarCorT" method="POST" action="../controller/qualificacoes-exec.php?op=corDoT">
+                            <input type="color" id="cor_fundo_qualif" name="corFundoT" value="{cor_fundo_t}"/>
+                            <button type="" class="btn">Salvar</button>
+                        </form>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -81,7 +83,7 @@
                     <textarea class="span4" id="descricao" name="descricao" rows="2" placeholder="Descreva a qualificação" value="{descricaoQualificacao}">{descricaoQualificacao}</textarea>
                 </div>
             </div>
-            <h4>URL Imagem</h4>
+            URL Imagem
             <div class="control-group">
                 <div class="controls">
                     <input class="span4" type="url" id="urlImg" name="urlImg"  placeholder="Insira o endereço de uma imagem" value="{urlImgVal}"/>
@@ -89,7 +91,7 @@
             </div>
             <div class="control-group">
                 <div class="controls">
-                    <h4>Tipo de Qualificação</h4>
+                    Tipo de Qualificação
                     <div class="btn-group alignment" data-toggle="buttons-radio">
                         <button type="button" class="btn" value="I" checked="checked">Interesse</button>
                         <button type="button" class="btn" value="E" >Especialidade</button>
@@ -98,20 +100,22 @@
                 </div>
             </div>
             <div class="nivel" >
-                <h4>Nivel</h4>
+                Nivel
                 <input class="span4" type="range" min="1" max="10" id="nota" name="nota" id="notaQualificacao" onkeyup="mostrarNota(this.value)" onchange="mostrarNota(this.value)" placeholder="nota" value="{notaQualificacao}" />
                 <span id="exibeNota">{nota}</span>
             </div>
-            <div class="control"><h4>Cor de fundo</h4>
+            <div class="control">Cor de fundo
+                <br>
                 <input type="color" id="cor_fundo_qualif" name="corFundoQualif" value="{corFundoQualif}"/>                            
             </div>
-            <h4>Letra</h4>
+            Letra
             <div class="control-group">
                 <div class="controls">
                     <input class="span4" type="text" id="font" name="fontQualif"  placeholder="Escolha uma" value="{fontQualif}"/>
                 </div>
             </div>
-            <div class="control"><h4>Cor da letra</h4>
+            <div class="control">Cor da letra
+                <br>
                 <input type="color" id="cor_letra_qualif" name="corLetraQualif" value="{corFontQualif}"/>                            
             </div>
             <div class="form-actions">
@@ -145,6 +149,11 @@
             $("#cor_fundo_qualif").val(color);
         }
     });
+
+     $("#cor_fundo_qualif").bind('input', function() {
+        $(".especializacao").css("background-color", $(this).val());
+        $(".interesse").css("background-color", $(this).val());
+     });
     
 </script>        
     <footer>
