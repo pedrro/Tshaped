@@ -369,6 +369,8 @@
                //print_r($objDePara);
                //echo '</b>';
                //$objDePara = $objDePara[0];
+               
+
                 if($tipoQualificacao == 'I'){
                     $tpl->newBlock("interesses");
                 }
@@ -383,6 +385,11 @@
                $tpl->assign("cor_fundo_qualif", $cor_fundo_qualif);
                $tpl->assign("cor_font_qualif", $cor_font_qualif);
                $tpl->assign("font_qualif", $font_qualif);
+
+               $tpl->newBlock("linkFonts");
+               $googleFont = "<link href='http://fonts.googleapis.com/css?family=$font_qualif' rel='stylesheet' type='text/css'>";
+               $tpl->assign("linkGoogleFont", $googleFont);
+               
            }   
            //die();
         }        
