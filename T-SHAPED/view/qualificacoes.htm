@@ -12,13 +12,30 @@
     {linkGoogleFont}
     <!-- END BLOCK : linkFonts -->
     <script src="../js/jquery/jquery-2.0.3.js"></script>
-    <script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="../js/bootstrap.js"></script> 
-    <script src="../js/jquery/jquery-1.7.1.min.js"></script>    
+    <!-- <script src="../js/jquery/jquery-1.7.1.min.js"></script> -->   
+    <script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.min.js"></script>  
     <script src="../js/jquery.nested.js"></script>    
     <script type="text/javascript" src="../js/wColorPicker/wColorPicker.min.js"></script> <!--Fonte: http://wcolorpicker.websanova.com/ -->
     <link rel="Stylesheet" type="text/css" href="../js/wColorPicker/wColorPicker.min.css" />
     <script type="text/javascript">
+	
+	
+		$(document).ready(function() {
+			$(".divQualif").draggable({containment: ".interesse", scroll: false });
+			
+			$("#lero").click(function() {
+				//parent = $('.interesses');
+				elementos = $(".divQualif");
+				elementos.each(function() {
+					alert($(this).css('left'));
+				});
+				//positionX = (parseInt(.css('left'))) / parent.width();
+				//positionY = (parseInt(ui.draggable.css('top'))) / parent.height();
+			});
+		
+		});
+  
         function mostrarNota(novoValor) {
             document.getElementById("exibeNota").innerHTML = novoValor;
         }
