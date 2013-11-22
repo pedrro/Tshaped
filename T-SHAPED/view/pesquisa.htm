@@ -18,20 +18,8 @@
 <body>
     <div class="navbar">
           <div class="navbar-inner container">
-              <a class="brand" href="#">T-ShapedViewer</a>
-              <div class="brand">Olá {nomeUsuario}</div>
-              <form class="navbar-search pull-right">
-                  <input type="text" class="search-query"  placeholder="Search" onBlur="funcPesquisa(this.value)">
-              </form>
-              <form action="../controller/login-exec.php" method="post">
-                      <li class="dropdown pull-right">
-                          <a role="button" class="dropdown-toggle brand" data-toggle="dropdown" href="">Menu</a>
-                          <ul class="dropdown-menu span4" role="menu" aria-labelledby="drop2">
-                              <li><a href="../controller/qualificacoes-exec.php?op=Listar">Editar Qualificações</a>
-                              <li><a href="../controller/logout.php">Logout</a></li>
-                          </ul>
-                      </li>
-              </form>
+              <a class="brand" href="../controller/usuarios-exec.php?op=Listar">T-ShapedViewer</a>
+              <div class="brand">Perfil de {nomeUsuario}</div>
           </div>
      </div>
 
@@ -65,12 +53,4 @@
 
 
 </body>
-
-<script>
-function funcPesquisa( nomeUsr ){
-  url = "../controller/pesquisa-exec.php?usr="+ nomeUsr;
-   window.location=url;
-  }
-</script>
-
 </html>
