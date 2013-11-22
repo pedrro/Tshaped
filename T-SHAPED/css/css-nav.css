@@ -153,9 +153,15 @@ float:left;
     margin-bottom:20px;
     min-height:200px;
 
-}*/
+}
 
-.divQualif{
+.divQualif1{
+    border-radius: 4px;
+    text-align: center;
+    color: #8B9958;
+}
+
+.divQualif2{
     border-radius: 4px;
     text-align: center;
     color: #8B9958;

@@ -12,7 +12,7 @@
     //require('../inc/inc.autoload.php');
     require('../inc/class.TemplatePower.php');
     //require('../model/Class.qualificacoesDAOExt.php');
-    require('../model/Class.qualificacoes_usuariosDAOExt.php');
+    //require('../model/Class.qualificacoes_usuariosDAOExt.php');
     require('../model/Class.usuariosDAOExt.php');
     //require('../model/Class.de_paraDAOExt.php');
     require('../model/class.DbAdmin.php');
@@ -35,30 +35,6 @@
     
     //Mensagem de Bem Vindo com nome do usuário por sessão
     $tpl->assign("nomeUsuario", $nomeUsuario);
-    
-    /******************************************************
-     * Salvar a posição x e y da div de qualificações do T
-    ******************************************************/    
-    if( isset($_REQUEST['origem']) && ($_REQUEST['origem'] == 'ajax') ){
-
-        $idQualificacaoUsuario = $_REQUEST['idQualificacaoUsuario'];
-        $posX = substr($_REQUEST['x'],0,3);
-        $posY = substr($_REQUEST['y'],0,3); 
-
-        $DadosQU = new qualificacoes_usuariosDAOExt();
-        
-        $where = 'id = '.$idQualificacaoUsuario;
-        
-        $DadosQU->setId($idQualificacaoUsuario);
-        $DadosQU->setPos_x($posX);
-        $DadosQU->setPos_y($posY);
-        
-        list($codErro, $lstDadosQU) = qualificacoes_usuariosDAOExt::updatePosXY($DadosQU);
-            //die($codErro);
-        
-        header('location: ../controller/qualificacoes-exec.php?op=Listar');
-       
-    }
     /******************************************************
      * Salvar a cor do fundo do T
     ******************************************************/    
@@ -112,7 +88,6 @@
         $corFundoQualif = $_POST["corFundoQualif"];
         $corLetraQualif = $_POST["corLetraQualif"];
         $fontQualif     = $_POST["fontQualif"];
-        $urlImagem      = $_POST["urlImg"];
 
         $permiteInsert = false;
 
@@ -136,6 +111,7 @@
 
                 //Valida se qualificação já foi cadastrada 
                 $idQualificacao = $DadosQuali->buscaQualificacao($nome);
+                //die("==>".$idQualificacao);
                 //Fim Bloco de validações de formulário
 
                 //Verifica se a qualificação já está associada a este usuario
@@ -156,11 +132,10 @@
                     $DadosQualUsu->setCor_fundo_qualif($corFundoQualif);
                     $DadosQualUsu->setcor_font_qualif($corLetraQualif);
                     $DadosQualUsu->setFont_qualif($fontQualif);
-                    $DadosQualUsu->setUrl_imagem($urlImagem);
 
                     //Insere registros na tabela qualificacoes_usuarios
                     list($codErro, $msgErro, $DadosQualUsu) = Qualificacoes_usuariosDAOExt::insert($DadosQualUsu);
-                    
+                    //die("aki".$msgErro);        
                     if( isset($codErro) && ($codErro == '0') ){
                         
                         $msg = 'Cadastrado com Sucesso!';
@@ -204,20 +179,19 @@
             $DadosQualUsu = new qualificacoes_usuariosDAOExt();
 
             //Pega informações do formulário enviadas por POST
-            $idQualificacao         = $_POST['idQualificacao'];
-            $nome                   = $_POST['nome'];
-            $tipo                   = $_POST['tipoRadios'];
-            $descricao              = $_POST['descricao'];
-            $idQualificacaoUsuario  = $_POST["idQualificacaoUsuario"];     
-            $nota                   = $_POST["nota"];     
-            $corFundoQualif         = $_POST["corFundoQualif"];
-            $corLetraQualif         = $_POST["corLetraQualif"];
-            $fontQualif             = $_POST["fontQualif"];
-            $urlImagem              = $_POST["urlImg"];
-           
+            $idQualificacao = $_POST['idQualificacao'];
+            $nome           = $_POST['nome'];
+            $tipo           = $_POST['tipoRadios'];
+            $descricao      = $_POST['descricao'];
+            $idQualificacaoUsuario = $_POST["idQualificacaoUsuario"];     
+            $nota           = $_POST["nota"];     
+            $corFundoQualif = $_POST["corFundoQualif"];
+            $corLetraQualif = $_POST["corLetraQualif"];
+            $fontQualif     = $_POST["fontQualif"];
+            
             //Valida se qualificação já foi cadastrada 
             $idQualificacao = $DadosQuali->buscaQualificacao($nome);
-           
+            //die("==>".$idQualificacao);
 
             //Seta valores no objeto para atualizar na tb qualificacoes_usuarios
             $DadosQualUsu->setQualificacoes_id($DadosQuali->getId());
@@ -230,7 +204,6 @@
             $DadosQualUsu->setCor_fundo_qualif($corFundoQualif);
             $DadosQualUsu->setcor_font_qualif($corLetraQualif);
             $DadosQualUsu->setFont_qualif($fontQualif);
-            $DadosQualUsu->setUrl_imagem($urlImagem);
 
             //Insere registros na tabela qualificacoes_usuarios
             list($codErro, $msgErro, $DadosQualUsu) = Qualificacoes_usuariosDAOExt::update($DadosQualUsu);
@@ -294,8 +267,6 @@
                  $corFundoQualif        = $lstDadosQualUsu[0]->getCor_fundo_qualif();
                  $corFontQualif         = $lstDadosQualUsu[0]->getCor_font_qualif();
                  $fontQualif            = $lstDadosQualUsu[0]->getFont_qualif();
-                 $urlImagem             = $lstDadosQualUsu[0]->getUrl_imagem();
-                 
             
 
                  $tpl->assign("idQualificacao", $idQualificacao);
@@ -308,7 +279,7 @@
                      $tpl->assign("radioE", 'checked');
                  }
                 
-                //$tpl->assign("nivel_qualif", $sizeQualif);
+                $tpl->assign("nivel_qualif", $sizeQualif);
                 $tpl->assign("nomeQualificacao", $nomeQualificacao);
                 //$tpl->assign("nivel_qualif", $objDePara->getPara());
 
@@ -320,7 +291,6 @@
                  $tpl->assign("fontQualif", $fontQualif);
                  $tpl->assign("nota", $notaQualificacao);
                  $tpl->assign("acaoInserir", 'edit');
-                 $tpl->assign("urlImgVal", $urlImagem);
 
             }
 
@@ -380,47 +350,24 @@
         if($countReg > 0){
 
            foreach ($DadosQualifUsu as $i => $lstDadosQualifUsu) {     
-  //print_r($lstDadosQualifUsu);
-  //die();
+  
                $objQualificacao  = $lstDadosQualifUsu->getQualificacao();
                $idQualificacao   = $objQualificacao->getId();
                $nomeQualificacao = $objQualificacao->getNome();
                //$tipoQualificacao = $objQualificacao->getTipo();
                
-               $nivel_qualif       = $lstDadosQualifUsu->getNota();
-               $cor_fundo_qualif   = $lstDadosQualifUsu->getCor_fundo_qualif();
-               $cor_font_qualif    = $lstDadosQualifUsu->getCor_font_qualif();
-               $font_qualif        = $lstDadosQualifUsu->getFont_qualif();
-               $sizeQualif         = $lstDadosQualifUsu->getFont_qualif();
-               $tipoQualificacao   = $lstDadosQualifUsu->getTipo();
-               $imagemQualificacao = $lstDadosQualifUsu->getUrl_imagem();
-               $posX               = $lstDadosQualifUsu->getPos_x();
-               $posY               = $lstDadosQualifUsu->getPos_y();
-              
+               $nivel_qualif     = $lstDadosQualifUsu->getNota();
+               $cor_fundo_qualif = $lstDadosQualifUsu->getCor_fundo_qualif();
+               $cor_font_qualif  = $lstDadosQualifUsu->getCor_font_qualif();
+               $font_qualif      = $lstDadosQualifUsu->getFont_qualif();
+               $sizeQualif       = $lstDadosQualifUsu->getFont_qualif();
+               $tipoQualificacao = $lstDadosQualifUsu->getTipo();
+               
                $objDePara = $lstDadosQualifUsu->getDePara();
                $sizeQualif = $objDePara->getPara();
-               
-               if( !empty($imagemQualificacao) ){
-
-                    $lstDadosDePara = new de_paraDAOExt();
-                    
-                    //Buscar no Banco o para conforme a nota                    
-                    list($countReg, $lstDadosDePara) = de_paraDAOExt::select("descricao = 'IMG_POSXY' and de = ".$nivel_qualif);        
-
-                    //Se achou
-                    if($countReg > 0){
-                        $imgWidth  = $lstDadosDePara[0]->getPara();               
-                        $imgHeight = $lstDadosDePara[1]->getPara();  
-                    }else{
-                        $imgWidth  = null;               
-                        $imgHeight = null;  
-                    }
-               }           
-               
-               /*echo '<b>';
-               print_r($objDePara);
-               echo '</b>';
-               die();*/
+               //echo '<b>';
+               //print_r($objDePara);
+               //echo '</b>';
                //$objDePara = $objDePara[0];
                 if($tipoQualificacao == 'I'){
                     $tpl->newBlock("interesses");
@@ -429,28 +376,13 @@
                     $tpl->newBlock("especialidades");
                 }
                 $tpl->assign("nivel_qualif", $sizeQualif);
-                $tpl->assign("top", $posY);
-                $tpl->assign("left", $posX);
                 $tpl->assign("idQualificacao", $idQualificacao);
-                $tpl->assign("idQualificacaoUsuario", $lstDadosQualifUsu->getId());
-               //die("==>".$nomeQualificacao. "  ==> ".$imagemQualificacao);
-                if(!empty($imagemQualificacao)){
-                    //$tpl->assign("nomeQualificacao", "<img src='".$imagemQualificacao."'/>");
-                    $tpl->assign("nomeQualificacao", sprintf("<img style='width: %spx; height: %spx;' src='%s'/>", $imgWidth, $imgHeight, $imagemQualificacao));
-                }
-                else{
-                    $tpl->assign("nomeQualificacao", $nomeQualificacao);
-                }
+                $tpl->assign("nomeQualificacao", $nomeQualificacao);
                 //$tpl->assign("nivel_qualif", $objDePara->getPara());
 
                $tpl->assign("cor_fundo_qualif", $cor_fundo_qualif);
                $tpl->assign("cor_font_qualif", $cor_font_qualif);
                $tpl->assign("font_qualif", $font_qualif);
-
-               $tpl->newBlock("linkFonts");
-               $googleFont = "<link href='http://fonts.googleapis.com/css?family=$font_qualif' rel='stylesheet' type='text/css'>";
-               $tpl->assign("linkGoogleFont", $googleFont);
-
            }   
            //die();
         }        

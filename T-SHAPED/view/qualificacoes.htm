@@ -13,28 +13,69 @@
     <!-- END BLOCK : linkFonts -->
     <script src="../js/jquery/jquery-2.0.3.js"></script>
     <script src="../js/bootstrap.js"></script> 
-    <!-- <script src="../js/jquery/jquery-1.7.1.min.js"></script> -->   
-    <script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.min.js"></script>  
+    <script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="../js/jquery.nested.js"></script>    
     <script type="text/javascript" src="../js/wColorPicker/wColorPicker.min.js"></script> <!--Fonte: http://wcolorpicker.websanova.com/ -->
     <link rel="Stylesheet" type="text/css" href="../js/wColorPicker/wColorPicker.min.css" />
     <script type="text/javascript">
 	
-	
-		$(document).ready(function() {
-			$(".divQualif").draggable({containment: ".interesse", scroll: false });
-			
-			$("#lero").click(function() {
-				//parent = $('.interesses');
-				elementos = $(".divQualif");
-				elementos.each(function() {
-					alert($(this).css('left'));
-				});
-				//positionX = (parseInt(.css('left'))) / parent.width();
-				//positionY = (parseInt(ui.draggable.css('top'))) / parent.height();
-			});
-		
-		});
+	var x, x2;
+        var y, y2;
+        
+        $(document).ready(function() {
+                /*DIV HORIZONTAL DO T*/
+                $(".divQualif1").draggable(
+                        {containment: ".interesse", 
+                         scroll: false,
+                         start: function( event, ui ) {
+                                y = $(this).offset().top;
+                                x = $(this).offset().left;
+                                $("#idQualificacaoUsuario").val($(this).prop('id'));
+                        },
+                        stop: function( event, ui ) {
+                              y2 = $(this).offset().top;
+                              x2 = $(this).offset().left;
+                              var xParent = $("#divInteresse").offset().left;
+                              var yParent = $("#divInteresse").offset().top;
+                              //alert('Left==> '+x+'   Desl. H==> '+x2+ '   Top==> '+y+ '   Desl. V==> '+y2);
+                              var xNovo = x2 - xParent;
+                              var yNovo = y2 - yParent;
+                              //alert("xNovo: "+ xNovo + "     yNovo: "+yNovo);
+                              // Requisição ajax para atualizar no banco
+                              $.ajax({ url: "../controller/qualificacoes-exec.php", 
+                                       type: 'post',
+                                       data: 'origem='+'ajax'+'&idQualificacaoUsuario='+$("#idQualificacaoUsuario").val()+'&x='+xNovo+'&y='+yNovo
+                             });
+                        }
+                 });
+                /*DIV VERTICAL DO T*/
+                $(".divQualif2").draggable(
+                        {containment: ".especializacao", 
+                         scroll: false,
+                         start: function( event, ui ) {
+                                y = $(this).offset().top;
+                                x = $(this).offset().left;
+                                $("#idQualificacaoUsuario").val($(this).prop('id'));
+                        },
+                        stop: function( event, ui ) {
+                              y2 = $(this).offset().top;
+                              x2 = $(this).offset().left;
+                              var xParent = $("#divEspecializacao").offset().left;
+                              var yParent = $("#divEspecializacao").offset().top;
+                              //alert('Left==> '+x+'   Desl. H==> '+x2+ '   Top==> '+y+ '   Desl. V==> '+y2);
+                              var xNovo = x2 - xParent;
+                              var yNovo = y2 - yParent;
+                              //alert("xNovo: "+ xNovo + "     yNovo: "+yNovo);
+                              // Requisição ajax para atualizar no banco
+                              $.ajax({ url: "../controller/qualificacoes-exec.php", 
+                                       type: 'post',
+                                       data: 'origem='+'ajax'+'&idQualificacaoUsuario='+$("#idQualificacaoUsuario").val()+'&x='+xNovo+'&y='+yNovo
+                             });
+                        }
+                 });
+
+        });
+                
   
         function mostrarNota(novoValor) {
             document.getElementById("exibeNota").innerHTML = novoValor;
@@ -61,19 +102,21 @@
             <div class='row-fluid'>
             <!--Body content-->
             <div style="width: 700px; padding: 10px; margin-left: 10px; float: left; position: relative; " >
-                <div class="interesse" style="width: 600px; height: 170px; padding: 5px; background-color:{cor_fundo_t};">
+                <div class="interesse" id="divInteresse" style="width: 600px; height: 170px; padding: 5px; background-color:{cor_fundo_t}; ">
                     <legend>Interesses</legend>
                     <!-- START BLOCK : interesses -->
-                    <span class="divQualif" style="display: inline-block; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif};" >
-                    <span><a href="../controller/qualificacoes-exec.php?acao=Alterar&idQualif={idQualificacao}" style="color:{cor_font_qualif}; font-family:{font_qualif}">{nomeQualificacao}</a></span> <span><a href="#" onClick="confirmaExclusao( '../controller/qualificacoes-exec.php?acao=Excluir&idQualif={idQualificacao}');"><img src="../img/ico-del.png" border="0"/></a></span></span>
+                    <span id="{idQualificacaoUsuario}" class="divQualif1" style="display: inline-block; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif}; top: {top}px; left: {left}px;" >
+			<span><a href="../controller/qualificacoes-exec.php?acao=Alterar&idQualif={idQualificacao}" style="color:{cor_font_qualif}; font-family:{font_qualif}">{nomeQualificacao}</a></span> <span><a href="#" onClick="confirmaExclusao( '../controller/qualificacoes-exec.php?acao=Excluir&idQualif={idQualificacao}');"><img src="../img/ico-del.png" border="0"/></a></span>
+                    </span>
                     <!-- END BLOCK : interesses -->
                 </div>
 
-                <div class="especializacao" style="width: 210px; height: 350px; padding: 5px; margin-left: 220px; background-color:{cor_fundo_t};">
+                <div class="especializacao" id="divEspecializacao" style="width: 210px; height: 350px; padding: 5px; margin-left: 220px; background-color:{cor_fundo_t};">
                     <legend>Especialidades</legend>
                     <!-- START BLOCK : especialidades -->
-                    <span class="divQualif" style="display: inline-block; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif};" >
-                    <span><a href="../controller/qualificacoes-exec.php?acao=Alterar&idQualif={idQualificacao}" style="color:{cor_font_qualif}; font-family:{font_qualif}">{nomeQualificacao}</a></span> <span><a href="#" onClick="confirmaExclusao( '../controller/qualificacoes-exec.php?acao=Excluir&idQualif={idQualificacao}');"><img src="../img/ico-del.png" border="0"/></a></span></span>
+                    <span id="{idQualificacaoUsuario}" class="divQualif2" style="display: inline-block; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif}; top: {top}px; left: {left}px;" >
+                        <span><a href="../controller/qualificacoes-exec.php?acao=Alterar&idQualif={idQualificacao}" style="color:{cor_font_qualif}; font-family:{font_qualif}">{nomeQualificacao}</a></span> <span><a href="#" onClick="confirmaExclusao( '../controller/qualificacoes-exec.php?acao=Excluir&idQualif={idQualificacao}');"><img src="../img/ico-del.png" border="0"/></a></span>
+                    </span>
                     <!-- END BLOCK : especialidades -->
                 </div>
                 <div class="editaT container">
@@ -144,7 +187,7 @@
                 <button type="submit" name="sub" class="btn btn-success" value="Inserir" >Salvar</button> 
             </div>
             <input type="hidden" name="idQualificacao" value="{idQualificacao}"/>
-            <input type="hidden" name="idQualificacaoUsuario" value="{idQualificacaoUsuario}"/>
+            <input type="hidden" id="idQualificacaoUsuario" name="idQualificacaoUsuario" value="{idQualificacaoUsuario}"/>
             <input type="hidden" name="acaoInserir" value="{acaoInserir}"/>
         </form>
         <!-- END BLOCK : formulario -->

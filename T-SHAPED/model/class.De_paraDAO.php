@@ -253,7 +253,7 @@ class de_paraDAO
                     $where .= " order by $orderBy";
 
             $sql = "select * from De_para $where";
-
+//die("==>".$sql);
             if ($limite > 0)
                     $sql.= " limit " . $limite;
 
