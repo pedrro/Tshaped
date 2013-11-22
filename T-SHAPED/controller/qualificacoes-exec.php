@@ -12,7 +12,7 @@
     //require('../inc/inc.autoload.php');
     require('../inc/class.TemplatePower.php');
     //require('../model/Class.qualificacoesDAOExt.php');
-    require('../model/Class.qualificacoes_usuariosDAOExt.php');
+    //require('../model/Class.qualificacoes_usuariosDAOExt.php');
     require('../model/Class.usuariosDAOExt.php');
     //require('../model/Class.de_paraDAOExt.php');
     require('../model/class.DbAdmin.php');
