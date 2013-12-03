@@ -35,11 +35,12 @@
                         stop: function( event, ui ) {
                               y2 = $(this).offset().top;
                               x2 = $(this).offset().left;
-                              var xParent = $("#divInteresse").offset().left;
                               var yParent = $("#divInteresse").offset().top;
-                              //alert('Left==> '+x+'   Desl. H==> '+x2+ '   Top==> '+y+ '   Desl. V==> '+y2);
-                              var xNovo = x2 - xParent;
+                              var xParent = $("#divInteresse").offset().left;
+                              //var yNovo = y2 - yParent - 70;
                               var yNovo = y2 - yParent;
+                              var xNovo = x2 - xParent;
+                              //alert('y: '+y+'   x: '+x+ '    u2: '+y2+ '    x2: '+x2+'    yParent: ' + yParent +'   xParent: '+xParent);
                               //alert("xNovo: "+ xNovo + "     yNovo: "+yNovo);
                               // Requisição ajax para atualizar no banco
                               $.ajax({ url: "../controller/qualificacoes-exec.php", 
@@ -101,17 +102,17 @@
         <div class="span10">
             <div class='row-fluid'>
             <!--Body content-->
-            <div style="width: 700px; padding: 10px; margin-left: 10px; float: left; position: relative; " >
-                <div class="interesse" id="divInteresse" style="width: 600px; height: 170px; padding: 5px; background-color:{cor_fundo_t}; ">
-                    <legend>Interesses</legend>
+            <div style="width: 700px; padding: 10px; margin-left: 10px; float: left; position: absolute; " >
+                <div class="interesse" id="divInteresse" style="width: 600px; height: 170px; position: absolute; padding: 5px; background-color:{cor_fundo_t};">
+                    <!--<legend>Interesses</legend> -->
                     <!-- START BLOCK : interesses -->
-                    <span id="{idQualificacaoUsuario}" class="divQualif1" style="display: inline-block; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif}; top: {top}px; left: {left}px;" >
+                    <span id="{idQualificacaoUsuario}" class="divQualif1" style="display: inline-block; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif}; position: absolute; top: {top}px; left: {left}px;" >
 			<span><a href="../controller/qualificacoes-exec.php?acao=Alterar&idQualif={idQualificacao}" style="color:{cor_font_qualif}; font-family:{font_qualif}">{nomeQualificacao}</a></span> <span><a href="#" onClick="confirmaExclusao( '../controller/qualificacoes-exec.php?acao=Excluir&idQualif={idQualificacao}');"><img src="../img/ico-del.png" border="0"/></a></span>
                     </span>
                     <!-- END BLOCK : interesses -->
                 </div>
 
-                <div class="especializacao" id="divEspecializacao" style="width: 210px; height: 350px; padding: 5px; margin-left: 220px; background-color:{cor_fundo_t};">
+                <div class="especializacao" id="divEspecializacao" style="width: 210px; height: 350px; position: absolute; top: 240px; padding: 5px; margin-left: 220px; background-color:{cor_fundo_t};">
                     <legend>Especialidades</legend>
                     <!-- START BLOCK : especialidades -->
                     <span id="{idQualificacaoUsuario}" class="divQualif2" style="display: inline-block; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif}; top: {top}px; left: {left}px;" >
@@ -188,6 +189,8 @@
             </div>
             <input type="hidden" name="idQualificacao" value="{idQualificacao}"/>
             <input type="hidden" id="idQualificacaoUsuario" name="idQualificacaoUsuario" value="{idQualificacaoUsuario}"/>
+            <input type="hidden" id="posx" name="posx" value="{posx}"/>
+            <input type="hidden" id="posy" name="posy" value="{posy}"/>
             <input type="hidden" name="acaoInserir" value="{acaoInserir}"/>
         </form>
         <!-- END BLOCK : formulario -->

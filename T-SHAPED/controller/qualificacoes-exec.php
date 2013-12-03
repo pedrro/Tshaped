@@ -214,7 +214,9 @@
             $corLetraQualif         = $_POST["corLetraQualif"];
             $fontQualif             = $_POST["fontQualif"];
             $urlImagem              = $_POST["urlImg"];
-           
+            $posX                   = $_POST["posx"];
+            $posY                   = $_POST["posy"];
+        
             //Valida se qualificação já foi cadastrada 
             $idQualificacao = $DadosQuali->buscaQualificacao($nome);
            
@@ -231,6 +233,8 @@
             $DadosQualUsu->setcor_font_qualif($corLetraQualif);
             $DadosQualUsu->setFont_qualif($fontQualif);
             $DadosQualUsu->setUrl_imagem($urlImagem);
+            $DadosQualUsu->setPos_x($posX);
+            $DadosQualUsu->setPos_y($posY);
 
             //Insere registros na tabela qualificacoes_usuarios
             list($codErro, $msgErro, $DadosQualUsu) = Qualificacoes_usuariosDAOExt::update($DadosQualUsu);
@@ -295,8 +299,8 @@
                  $corFontQualif         = $lstDadosQualUsu[0]->getCor_font_qualif();
                  $fontQualif            = $lstDadosQualUsu[0]->getFont_qualif();
                  $urlImagem             = $lstDadosQualUsu[0]->getUrl_imagem();
-                 
-            
+                 $posX                  = $lstDadosQualUsu[0]->getPos_x();
+                 $posY                  = $lstDadosQualUsu[0]->getPos_y();
 
                  $tpl->assign("idQualificacao", $idQualificacao);
                  $tpl->assign("nomeQualificacao", $nomeQualificacao);
@@ -321,7 +325,9 @@
                  $tpl->assign("nota", $notaQualificacao);
                  $tpl->assign("acaoInserir", 'edit');
                  $tpl->assign("urlImgVal", $urlImagem);
-
+                 $tpl->assign("acaoInserir", 'edit');
+                 $tpl->assignGlobal("posx", $posX);
+                 $tpl->assignGlobal("posy", $posY);
             }
 
          }     
