@@ -94,10 +94,7 @@
                
                $objDePara = $lstDadosQualifUsu->getDePara();
                $sizeQualif = $objDePara->getPara();
-               //echo '<b>';
-               //print_r($objDePara);
-               //echo '</b>';
-               //$objDePara = $objDePara[0];
+               
                 if($tipoQualificacao == 'I'){
                     $tpl->newBlock("interesses");
                 }
@@ -112,13 +109,7 @@
                $tpl->assign("font_qualif", $font_qualif);
                $tpl->assign("corFontQualif", $corFontQualif);
 
-               //$tpl->newBlock("linkFonts");
-               //$googleFont = "<link href='http://fonts.googleapis.com/css?family=$font_qualif' rel='stylesheet' type='text/css'>";
-               //$tpl->assign("linkGoogleFont", $googleFont);
            }   
-           //die();
-        }        
-        
-        //$tpl->newBlock("formulario");
+        }
 }  
 ?>

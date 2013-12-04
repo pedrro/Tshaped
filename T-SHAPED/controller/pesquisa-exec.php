@@ -26,18 +26,21 @@
         
         $vet = UsuariosDAOExt::getUsuariosComQualif($nomeQualif);
         $countReg = count($vet);
+        if($countReg > 0) {
+          foreach ($vet as $i => $obj) {
+            $idUsr      = $obj[0];
+            $nomeUsr    = $obj[1];
+            $nomeQualif = $obj[2];
+            $notaQualif = $obj[3];
+            $tipoQualif = $obj[4];
 
-        foreach ($vet as $i => $obj) {
-          $idUsr      = $obj[0];
-          $nomeUsr    = $obj[1];
-          $nomeQualif = $obj[2];
-          $notaQualif = $obj[3];
-
-          $tpl->newBlock("number_row");
-          $tpl->assign("qlf_id", $idUsr); 
-          $tpl->assign("qlf_nome", $nomeUsr); 
-          $tpl->assign("qlf_qualif", $nomeQualif); 
-          $tpl->assign("qlf_nivel", $notaQualif); 
+            $tpl->newBlock("number_row");
+            $tpl->assign("qlf_id", $idUsr); 
+            $tpl->assign("qlf_nome", $nomeUsr); 
+            $tpl->assign("qlf_qualif", $nomeQualif);
+            $tpl->assign("qlf_tipo", $tipoQualif);
+            $tpl->assign("qlf_nivel", $notaQualif);
+          }
         }
     }
     
@@ -76,7 +79,7 @@
             $tpl->newBlock("user_row");
             $tpl->assign("usr_id", $idUsr); 
             $tpl->assign("usr_nome", $nomeUsr); 
-            $tpl->assign("usr_email", $emailUsr); 
+            $tpl->assign("usr_email", $emailUsr);
           }
         }
     }
