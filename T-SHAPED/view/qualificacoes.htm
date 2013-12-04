@@ -146,15 +146,15 @@
                     <!--<legend>Interesses</legend> -->
                     <!-- START BLOCK : interesses -->
                     <span id="{idQualificacaoUsuario}" class="divQualif1" style="display: inline-block; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif}; position: absolute; top: {top}px; left: {left}px;" >
-			<span><a href="../controller/qualificacoes-exec.php?acao=Alterar&idQualif={idQualificacao}" style="color:{cor_font_qualif}; font-family:{font_qualif}">{nomeQualificacao}</a></span> <span><a href="#" onClick="confirmaExclusao( '../controller/qualificacoes-exec.php?acao=Excluir&idQualif={idQualificacao}');"><img src="../img/ico-del.png" border="0"/></a></span>
+                        <span><a href="../controller/qualificacoes-exec.php?acao=Alterar&idQualif={idQualificacao}" style=" color:{cor_font_qualif}; font-family:{font_qualif}">{nomeQualificacao}</a></span> <span><a  href="#" onClick="confirmaExclusao( '../controller/qualificacoes-exec.php?acao=Excluir&idQualif={idQualificacao}');"><img src="../img/ico-del.png" border="0"/></a></span>
                     </span>
                     <!-- END BLOCK : interesses -->
                 </div>
 
                 <div class="especializacao" id="divEspecializacao" style="width: 210px; height: 350px; position: absolute; top: 240px; padding: 5px; margin-left: 220px; background-color:{cor_fundo_t};">
-                    <legend>Especialidades</legend>
+                    <!--<legend>Especialidades</legend>-->
                     <!-- START BLOCK : especialidades -->
-                    <span id="{idQualificacaoUsuario}" class="divQualif2" style="display: inline-block; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif}; top: {top}px; left: {left}px;" >
+                    <span id="{idQualificacaoUsuario}" class="divQualif2" style="display: inline-block; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif}; position: absolute; top: {top}px; left: {left}px;" >
                         <span><a href="../controller/qualificacoes-exec.php?acao=Alterar&idQualif={idQualificacao}" style="color:{cor_font_qualif}; font-family:{font_qualif}">{nomeQualificacao}</a></span> <span><a href="#" onClick="confirmaExclusao( '../controller/qualificacoes-exec.php?acao=Excluir&idQualif={idQualificacao}');"><img src="../img/ico-del.png" border="0"/></a></span>
                     </span>
                     <!-- END BLOCK : especialidades -->
@@ -196,9 +196,9 @@
                 <div class="controls">
                     Tipo de Qualificação
                     <div class="btn-group alignment" data-toggle="buttons-radio">
-                        <button type="button" class="btn" value="I" checked="checked">Interesse</button>
+                        <button type="button" class="btn" value="I" >Interesse</button>
                         <button type="button" class="btn" value="E" >Especialidade</button>
-                        <input type="hidden" id="radioVal" name="tipoRadios" value="I"/>
+                        <input type="hidden" id="radioVal" name="tipoRadios" value="{tipoRadios}"/>
                     </div>
                 </div>
             </div>
@@ -209,7 +209,7 @@
             </div>
             <div class="control">Cor de fundo
                 <br>
-                <input type="color" id="corFundoQualif" name="corFundoQualif" value="{corFundoQualif}" onchange="funcPreVisu()"/>                            
+                <input type="color" id="cor_fundo_qualif" name="corFundoQualif" value="{corFundoQualif}" onchange="funcPreVisu()"/>                            
             </div>
             Letra
             <div class="control-group">
@@ -263,7 +263,7 @@
             </div>
             <div class="control">Cor da letra
                 <br>
-                <input type="color" id="corLetraQualif" name="corLetraQualif" value="{corFontQualif}" onchange="funcPreVisu()"/>                            
+                <input type="color" id="cor_letra_qualif" name="corLetraQualif" value="{corFontQualif}" onchange="funcPreVisu()"/>                            
             </div>
 
             <input type="text" id="visuTeste" name="visuTeste" value="" style="font-size:20px" readonly/>

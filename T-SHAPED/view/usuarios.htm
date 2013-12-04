@@ -81,19 +81,23 @@
         <div class="span10">
             <div class="row-fluid">
                 <!--Body content-->
-                <div style="width: 700px; padding: 10px; margin-left: 10px; float: left; position: relative; " >
-                    <div class="interesse" style="background-color:{cor_fundo_t}; text-align: justify; border-radius:10px;margin-left:20px;margin-bottom:20px;width: 600px; height: 170px; padding: 5px;">
-                        <legend>Interesses</legend>
-                        <!-- START BLOCK : interesses -->
-                        <span class="divQualif" style="display: inline-block; color: {corFontQualif}; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif}; font-family:{font_qualif}" >{nomeQualificacao}</span>
-                        <!-- END BLOCK : interesses -->
-                    </div> <!-- fim span 12 interesse -->
-                    <div class="especializacao" style="background-color:{cor_fundo_t}; text-align: center; border-radius:10px;margin-left:20px;margin-bottom:20px;width: 210px; height: 350px; padding: 5px; margin-left: 230px;">
-                        <legend>Especialidades</legend>
-                        <!-- START BLOCK : especialidades -->
-                        <span class="divQualif" style="display: inline-block; color: {corFontQualif}; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif}; font-family:{font_qualif}" >{nomeQualificacao}</span>
-                        <!-- END BLOCK : especialidades -->
-                    </div> <!-- fim span 12 especialização -->
+                <div style="width: 700px; padding: 10px; margin-left: 10px; float: left; position: absolute; " >
+                <div class="interesse" id="divInteresse" style="width: 600px; height: 170px; position: absolute; padding: 5px; background-color:{cor_fundo_t};">
+                    <!--<legend>Interesses</legend> -->
+                    <!-- START BLOCK : interesses -->
+                    <span id="{idQualificacaoUsuario}" class="divQualif1" style="display: inline-block; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif}; position: absolute; top: {top}px; left: {left}px;" >
+                        <span style=" color:{cor_font_qualif}; font-family:{font_qualif}">{nomeQualificacao}</a></span>
+                    </span>
+                    <!-- END BLOCK : interesses -->
+                </div>
+                <div class="especializacao" id="divEspecializacao" style="width: 210px; height: 350px; position: absolute; top: 240px; padding: 5px; margin-left: 220px; background-color:{cor_fundo_t};">
+                    <!--<legend>Especialidades</legend>-->
+                    <!-- START BLOCK : especialidades -->
+                    <span id="{idQualificacaoUsuario}" class="divQualif2" style="display: inline-block; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif}; position: absolute; top: {top}px; left: {left}px;" >
+                        <span style="color:{cor_font_qualif}; font-family:{font_qualif}">{nomeQualificacao}</a></span> 
+                    </span>
+                    <!-- END BLOCK : especialidades -->
+                </div>
                 </div>
             </div>
         </div>

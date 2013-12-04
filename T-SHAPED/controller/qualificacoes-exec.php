@@ -306,10 +306,10 @@
                  $tpl->assign("nomeQualificacao", $nomeQualificacao);
                  
                  if($tipoQualificacao == 'I'){
-                    $tpl->assign("radioI", 'checked');
+                    $tpl->assign("tipoRadios", 'I');
                  }
                  else{
-                     $tpl->assign("radioE", 'checked');
+                     $tpl->assign("tipoRadios", 'E');
                  }
                 
                 //$tpl->assign("nivel_qualif", $sizeQualif);
