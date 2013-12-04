@@ -8,9 +8,48 @@
     <link href="../css/css-nav.css" rel="stylesheet" />
     <link href="../css/style.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="../js/css/custom-theme/jquery-ui-1.10.3.custom.min.css" />
-    <!-- START BLOCK : linkFonts -->
-    {linkGoogleFont}
-    <!-- END BLOCK : linkFonts -->
+
+    <link href='http://fonts.googleapis.com/css?family=Gorditas' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Codystar' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Crafity Girls' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Permanent Marker' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Poiret One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Armata' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Cherry Cream Soda' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Vast Shadow' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Marck Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Josefin Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Shadows Into Light' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Finger Paint' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Fontdiner Swanky' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat Subrayada' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Rancho' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Mouse Memoirs' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Dancing Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Coming Soon' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Luckiest Guy' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Amatic SC' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Black Ops One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Allerta Stencil' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Sancreek' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Kranky' rel='stylesheet' type='text/css'> 
+    <link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=MedievalSharp' rel='stylesheet' type='text/css'>
+
     <script src="../js/jquery/jquery-2.0.3.js"></script>
     <script src="../js/bootstrap.js"></script> 
     <script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -139,7 +178,7 @@
         <form id="form-horizontal" name="cadastro" method="POST" action="../controller/qualificacoes-exec.php">
             <div class="control-group">
                 <div class="controls">
-                    <input class="span4" type="text" id="nome" name="nome" autocomplete="on" placeholder="Nome" value="{nomeQualificacao}" required autofocus/>
+                    <input class="span4" type="text" id="nome" name="nome" autocomplete="on" placeholder="Nome" value="{nomeQualificacao}" onchange="funcPreVisu()" required autofocus/>
                 </div>
             </div>
             <div class="control-group">
@@ -170,18 +209,65 @@
             </div>
             <div class="control">Cor de fundo
                 <br>
-                <input type="color" id="cor_fundo_qualif" name="corFundoQualif" value="{corFundoQualif}"/>                            
+                <input type="color" id="corFundoQualif" name="corFundoQualif" value="{corFundoQualif}" onchange="funcPreVisu()"/>                            
             </div>
             Letra
             <div class="control-group">
                 <div class="controls">
-                    <input class="span4" type="text" id="font" name="fontQualif"  placeholder="Escolha uma" value="{fontQualif}"/>
+                    <!--<input class="span4" type="text" id="font" name="fontQualif"  placeholder="Escolha uma" value="{fontQualif}"/>-->
+                    <select id="selFont" name="fontQualif" value="{fontQualif}" onchange="funcPreVisu()">
+                        <option value="Gorditas">Gorditas</option>
+                        <option value="Codystar">Codystar</option>
+                        <option value="Orbitron">Orbitron</option>
+                        <option value="Nosifer">Nosifer</option>
+                        <option value="Crafity Girls">Crafity Girls</option>
+                        <option value="Permanent Marker">Permanent Marker</option>
+                        <option value="Arvo">Arvo</option>
+                        <option value="Poiret One">Poiret One</option>
+                        <option value="Armata">Armata</option>
+                        <option value="Cherry Cream Soda">Cherry Cream Soda</option>
+                        <option value="Vast Shadow">Vast Shadow</option>
+                        <option value="Ubuntu">Ubuntu</option>
+                        <option value="Marck Script">Marck Script</option>
+                        <option value="Josefin Sans">Josefin Sans</option>
+                        <option value="Lobster">Lobster</option>
+                        <option value="Shadows Into Light">Shadows Into Light</option>
+                        <option value="Finger Paint">Finger Paint</option>
+                        <option value="Fontdiner Swanky">Fontdiner Swanky</option>
+                        <option value="Monoton">Monoton</option>
+                        <option value="Orbitron">Orbitron</option>
+                        <option value="Montserrat Subrayada">Montserrat Subrayada</option>
+                        <option value="Rancho">Rancho</option>
+                        <option value="Mouse Memoirs">Mouse Memoirs</option>
+                        <option value="Open Sans">Open Sans</option>
+                        <option value="Oswald">Oswald</option>
+                        <option value="Roboto">Roboto</option>
+                        <option value="Play">Play</option>
+                        <option value="Nunito">Nunito</option>
+                        <option value="Inconsolata">Inconsolata</option>
+                        <option value="Dancing Script">Dancing Script</option>
+                        <option value="Coming Soon">Coming Soon</option>
+                        <option value="Luckiest Guy">Luckiest Guy</option>
+                        <option value="Amatic SC">Amatic SC</option>
+                        <option value="Black Ops One">Black Ops One</option>
+                        <option value="Bangers">Bangers</option>
+                        <option value="Allerta Stencil">Allerta Stencil</option>
+                        <option value="Sancreek">Sancreek</option>
+                        <option value="Slackey">Slackey</option>
+                        <option value="Kranky">Kranky</option>
+                        <option value="Audiowide">Audiowide</option>
+                        <option value="MedievalSharp">MedievalSharp</option>
+                    </select>
+
                 </div>
             </div>
             <div class="control">Cor da letra
                 <br>
-                <input type="color" id="cor_letra_qualif" name="corLetraQualif" value="{corFontQualif}"/>                            
+                <input type="color" id="corLetraQualif" name="corLetraQualif" value="{corFontQualif}" onchange="funcPreVisu()"/>                            
             </div>
+
+            <input type="text" id="visuTeste" name="visuTeste" value="" style="font-size:20px" readonly/>
+
             <div class="form-actions">
                 <!--<button type="submit" name="sub" class="btn btn-primary" value="Novo" >Novo</button>-->
                 <button type="reset" name="reset" class="btn btn-danger" value="Cancelar" >Cancelar</button> 
@@ -238,6 +324,23 @@
         document.getElementById('radioVal').value = $(this).val();
       }); 
     });
+    </script>
+
+    <script>
+        function funcPreVisu()
+        {   
+            var visu=document.getElementById("visuTeste");
+            visu.style.fontFamily=document.getElementById("selFont").value;
+
+            var nomeQua=document.getElementById("nome").value;
+            visu.value = nomeQua;
+
+            var corFont=document.getElementById("corLetraQualif").value;
+            var corFundo=document.getElementById("corFundoQualif").value;
+
+            visu.style.color=corFont;
+            visu.style.backgroundColor=corFundo;
+        }
     </script>
 
 </body>

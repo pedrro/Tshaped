@@ -77,10 +77,9 @@ body {
 }
 
 div.editaT {
- float:left; 
+ float:right; 
  border-radius: 3px;
- margin-top: 232px;
- margin-left: 20px;
+ margin-top: 332px;
  width: 220px; 
 }
 

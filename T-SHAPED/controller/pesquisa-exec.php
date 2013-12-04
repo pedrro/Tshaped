@@ -16,109 +16,70 @@
     $nomeUsuario  = $_SESSION['nomeUsuario'];
     $idUsuario    = $_SESSION['idUsuario'];
     $emailUsuario = $_SESSION['emailUsuario'];
-//die($idUsuario);
-//print_r($_SESSION);
-//die();
+
+    $tpl->assign("nomeUsuario", $nomeUsuario); 
     /******************************************************
      * Listar Qualificações
     ******************************************************/    
-    if( isset($_REQUEST['usr'])){
-        $nomeUsr = $_REQUEST['usr'];
-
-        $where = "nome like '$nomeUsr%'";
+    if( isset($_REQUEST['frmPesquisaQualif'])){
+        $nomeQualif = $_REQUEST['nomeQualif'];
         
-        list($countReg, $vet) = UsuariosDAOExt::select($where, null, 1);
+        $vet = UsuariosDAOExt::getUsuariosComQualif($nomeQualif);
+        $countReg = count($vet);
 
-        if ($countReg > 0) {
-            $idUsr        = $vet[0]->getId();
-            $nomeUsuario  = $vet[0]->getNome();
-            //Chama função para listar qualificacoes
-            listaQualif($idUsr, $tpl);
+        foreach ($vet as $i => $obj) {
+          $idUsr      = $obj[0];
+          $nomeUsr    = $obj[1];
+          $nomeQualif = $obj[2];
+          $notaQualif = $obj[3];
+
+          $tpl->newBlock("number_row");
+          $tpl->assign("qlf_id", $idUsr); 
+          $tpl->assign("qlf_nome", $nomeUsr); 
+          $tpl->assign("qlf_qualif", $nomeQualif); 
+          $tpl->assign("qlf_nivel", $notaQualif); 
         }
-        else {
-            echo "ERRO no SQL = $vet[0] - $vet[1] - $vet[2]";
-            exit();
-        }
-        
-        $tpl->assignGlobal("nomeUsuario", $nomeUsuario);
     }
-
     
-    $tpl->printToScreen(); 
+
+    if( isset($_REQUEST['frmPesquisaUsr'])){
+        $nomeUsr = $_REQUEST['usrNome'];
+        $sobrenomeUsr = $_REQUEST['usrSobrenome'];
+
+        listaUsr($tpl, $nomeUsr, $sobrenomeUsr);
+    }
+    
 
     /******************************************************
      * FUNÇÕES
     ******************************************************/       
-    function listaQualif($idUsuario, $tpl){
+    function listaUsr($tpl, $usrNome, $usrSobrenome) {
 
-        $filtro1 = ' id = '.$idUsuario;
-        
-        //Busca dados de usuarios
-        list($countReg, $DadosUsuario) = usuariosDAOExt::select($filtro1);
+    if( !empty($usrNome) ) {
+      $where = "nome like '$usrNome%'";  
+    } 
 
-        if($countReg > 0){
-           foreach ($DadosUsuario as $i => $lstUsuario) {     
-               $objUsuario = $lstUsuario;
-           }   
-           
-           $cor_fundo_t = $objUsuario->getCor_fundo_t();
+    if( !empty($usrSobrenome) ) {
+      if( !empty($usrNome) )
+        $where .= ' and ';
+      $where .= "sobrenome like '$usrSobrenome%'";  
+    }
 
-           $tpl->assignGlobal("cor_fundo_t", $cor_fundo_t);
-           
+     list($countReg, $vet) = UsuariosDAOExt::select($where);
+
+      if ($countReg > 0) {
+        foreach ($vet as $i => $usr) {
+            $idUsr   = $usr->getId();
+            $nomeUsr = $usr->getNome() . ' ' . $usr->getSobrenome();
+            $emailUsr = $usr->getEmail();
+
+            $tpl->newBlock("user_row");
+            $tpl->assign("usr_id", $idUsr); 
+            $tpl->assign("usr_nome", $nomeUsr); 
+            $tpl->assign("usr_email", $emailUsr); 
+          }
         }
-        
-        $DadosQualifUsu = $objUsuario->getQualificacoes();
-        
-        /*echo '<pre>';
-        print_r($DadosQualifUsu);
-        echo '</pre>';
-        die("entrei".$countReg);*/
-        
-        $countReg = count($DadosQualifUsu);
-  
-        if($countReg > 0){
+    }
 
-           foreach ($DadosQualifUsu as $i => $lstDadosQualifUsu) {     
-  
-               $objQualificacao  = $lstDadosQualifUsu->getQualificacao();
-               $idQualificacao   = $objQualificacao->getId();
-               $nomeQualificacao = $objQualificacao->getNome();
-               //$tipoQualificacao = $objQualificacao->getTipo();
-               
-               $nivel_qualif     = $lstDadosQualifUsu->getNota();
-               $cor_fundo_qualif = $lstDadosQualifUsu->getCor_fundo_qualif();
-               $font_qualif      = $lstDadosQualifUsu->getFont_qualif();
-               $sizeQualif       = $lstDadosQualifUsu->getFont_qualif();
-               $tipoQualificacao = $lstDadosQualifUsu->getTipo();
-               $corFontQualif    = $lstDadosQualifUsu->getCor_font_qualif();
-               
-               $objDePara = $lstDadosQualifUsu->getDePara();
-               $sizeQualif = $objDePara->getPara();
-               //echo '<b>';
-               //print_r($objDePara);
-               //echo '</b>';
-               //$objDePara = $objDePara[0];
-                if($tipoQualificacao == 'I'){
-                    $tpl->newBlock("interesses");
-                }
-                else{
-                    $tpl->newBlock("especialidades");
-                }
-                $tpl->assign("nivel_qualif", $sizeQualif);
-                $tpl->assign("idQualificacao", $idQualificacao);
-                $tpl->assign("nomeQualificacao", $nomeQualificacao);
-                //  $tpl->assignGlobal("nivel_qualif", $sizeQualif);
-               $tpl->assign("cor_fundo_qualif", $cor_fundo_qualif);
-               $tpl->assign("font_qualif", $font_qualif);
-               $tpl->assign("corFontQualif", $corFontQualif);
-
-               $tpl->newBlock("linkFonts");
-               $googleFont = "<link href='http://fonts.googleapis.com/css?family=$font_qualif' rel='stylesheet' type='text/css'>";
-               $tpl->assign("linkGoogleFont", $googleFont);
-           }   
-           //die();
-        }        
-        
-        //$tpl->newBlock("formulario");
-}  
+    $tpl->printToScreen(); 
 ?>

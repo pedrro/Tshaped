@@ -8,9 +8,6 @@
     <link href="../css/css-nav.css" rel="stylesheet" />
     <link href="../css/style.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="../js/css/custom-theme/jquery-ui-1.10.3.custom.min.css" />
-    <!-- START BLOCK : linkFonts -->
-    {linkGoogleFont}
-    <!-- END BLOCK : linkFonts -->
     <script src="../js/jquery/jquery-2.0.3.js"></script>
     <script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="../js/bootstrap.js"></script> 
@@ -19,38 +16,62 @@
     <div class="navbar">
           <div class="navbar-inner container">
               <a class="brand" href="../controller/usuarios-exec.php?op=Listar">T-ShapedViewer</a>
-              <div class="brand">Perfil de {nomeUsuario}</div>
+              <div class="brand">Pesquisa de {nomeUsuario}</div>
           </div>
-     </div>
-
-    <!--
-    <div id="menuUsuario">
-         <h3>Menu</h3>
-         <span class="itemMenu"><a href="../controller/qualificacoes-exec.php?op=Listar">Qualificações</a></span>
-    </div>    
-    -->
-    <div class="visualizat-centro">
-        <div class="span10">
-            <div class="row-fluid">
-                <!--Body content-->
-                <div style="width: 700px; padding: 10px; margin-left: 10px; float: left; position: relative; " >
-                    <div class="interesse" style="background-color:{cor_fundo_t}; text-align: justify; border-radius:10px;margin-left:20px;margin-bottom:20px;width: 600px; height: 170px; padding: 5px;">
-                        <legend>Interesses</legend>
-                        <!-- START BLOCK : interesses -->
-                        <span class="divQualif" style="display: inline-block; color: {corFontQualif}; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif}; font-family:{font_qualif}" >{nomeQualificacao}</span>
-                        <!-- END BLOCK : interesses -->
-                    </div> <!-- fim span 12 interesse -->
-                    <div class="especializacao" style="background-color:{cor_fundo_t}; text-align: center; border-radius:10px;margin-left:20px;margin-bottom:20px;width: 200px; height: 350px; padding: 5px; margin-left: 230px;">
-                        <legend>Especialidades</legend>
-                        <!-- START BLOCK : especialidades -->
-                        <span class="divQualif" style="display: inline-block; color: {corFontQualif}; padding: 4px; font-size: {nivel_qualif}px; background-color:{cor_fundo_qualif}; font-family:{font_qualif}" >{nomeQualificacao}</span>
-                        <!-- END BLOCK : especialidades -->
-                    </div> <!-- fim span 12 especialização -->
-                </div>
+    </div>
+    
+    <div class="control-group span10">
+        <div class="controls">
+            <form name="frmPesquisaUsr" method="POST" action="">
+                <input name="usrNome" type="text" placeholder="Nome Usuário" class = "span3"/>
+                <input name="usrSobrenome" type="text" placeholder="Sobrenome Usuário" class = "span3"/>
+                <input type="submit" name="frmPesquisaUsr" value="Filtrar" class="btn btn-primary"/>
+            </form>
+            <div class="tabela-usr">
+                <table class="table table-bordered"> <!-- table-hover table-bordered table-striped">-->
+                    <thead>
+                        <tr>
+                        <td><b>Nome</td>
+                        <td><b>e-mail</td>
+                        </tr>
+                    </thead>
+                    <!-- START BLOCK : user_row -->
+                    <tr>
+                        <td><a href="../controller/mostraT-exec.php?usrId={usr_id}">{usr_nome}</td>
+                        <td>{usr_email}</td>
+                    </tr>
+                    <!-- END BLOCK : user_row -->
+                </table>
             </div>
         </div>
     </div>
 
+    <div class="control-group span10">
+        <div class="controls">
+            <form name="frmPesquisaQualif" method="POST" action="">
+                <input name="nomeQualif" type="text" placeholder="Nome Qualificação" class = "span3"/>
+                <input type="submit" name="frmPesquisaQualif" value="Filtrar" class="btn btn-primary"/>
+            </form>
+            <div class="tabela-usr">
+                <table class="table table-bordered"> <!--table-hover table-bordered table-striped">-->
+                    <thead>
+                        <tr>
+                        <td><b>Nome</td>
+                        <td><b>Qualificação</td>
+                        <td><b>Nível</td>
+                        </tr>
+                    </thead>
+                    <!-- START BLOCK : number_row -->
+                    <tr>
+                        <td><a href="../controller/mostraT-exec.php?usrId={qlf_id}">{qlf_nome}</td>
+                        <td>{qlf_qualif}</td>
+                        <td>{qlf_nivel}</td>
+                    </tr>
+                    <!-- END BLOCK : number_row -->
+                </table>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
