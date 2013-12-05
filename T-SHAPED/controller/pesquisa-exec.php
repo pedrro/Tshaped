@@ -23,8 +23,9 @@
     ******************************************************/    
     if( isset($_REQUEST['frmPesquisaQualif'])){
         $nomeQualif = $_REQUEST['nomeQualif'];
+        $nivelQualif = $_REQUEST['nivelQualif'];
         
-        $vet = UsuariosDAOExt::getUsuariosComQualif($nomeQualif);
+        $vet = UsuariosDAOExt::getUsuariosComQualif($nomeQualif, $nivelQualif);
         $countReg = count($vet);
         if($countReg > 0) {
           foreach ($vet as $i => $obj) {

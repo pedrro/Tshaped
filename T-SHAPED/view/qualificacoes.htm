@@ -127,7 +127,7 @@
         }
     </script>    
 </head>
-<body>
+<body  onload="funcSelectFont()">
     <div class="navbar">
         <div class="navbar-inner container">
             <a class="brand" href="../controller/usuarios-exec.php?op=Listar">T-ShapedViewer</a>
@@ -215,7 +215,7 @@
             <div class="control-group">
                 <div class="controls">
                     <!--<input class="span4" type="text" id="font" name="fontQualif"  placeholder="Escolha uma" value="{fontQualif}"/>-->
-                    <select id="selFont" name="fontQualif" value="{fontQualif}" onchange="funcPreVisu()">
+                    <select id="fontQualif" name="fontQualif" value="{fontQualif}" onchange="funcPreVisu()">
                         <option value="Gorditas">Gorditas</option>
                         <option value="Codystar">Codystar</option>
                         <option value="Orbitron">Orbitron</option>
@@ -279,6 +279,7 @@
             <input type="hidden" id="posy" name="posy" value="{posy}"/>
             <input type="hidden" name="acaoInserir" value="{acaoInserir}"/>
         </form>
+        <input type="hidden" id="fontQualifHiden" name="fontQualifHiden" value="{fontQualif}"/>
         <!-- END BLOCK : formulario -->
         <!-- START BLOCK : mensagem -->
         <div id="retorno">
@@ -329,8 +330,9 @@
     <script>
         function funcPreVisu()
         {   
+            
             var visu=document.getElementById("visuTeste");
-            visu.style.fontFamily=document.getElementById("selFont").value;
+            visu.style.fontFamily=document.getElementById("fontQualif").value;
 
             var nomeQua=document.getElementById("nome").value;
             visu.value = nomeQua;
@@ -340,6 +342,24 @@
 
             visu.style.color=corFont;
             visu.style.backgroundColor=corFundo;
+
+        }
+
+        function funcSelectFont() {
+            var val = document.getElementById('fontQualifHiden').value;
+
+            if(val != null)
+            {            
+                var sel = document.getElementById('fontQualif');
+                for(var i = 0, j = sel.options.length; i < j; i++) {
+                    if(sel.options[i].innerHTML === val) {
+                       sel.selectedIndex = i;
+                       break;
+                    }
+                }
+
+                funcPreVisu();    
+            }
         }
     </script>
 
