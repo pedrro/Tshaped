@@ -56,7 +56,7 @@
 #retorno{
     margin: 0 auto;
     width: 300px;
-    height: 30px;
+    min-height: 30px;
     border: 1px solid red;
     border-radius: 4px;
     background-color: #eb8f00; 

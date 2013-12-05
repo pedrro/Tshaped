@@ -9,8 +9,10 @@
     require('../inc/inc.util.php');
 
     $tpl = new TemplatePower("../view/usuarios.htm");
-
     $tpl->prepare();
+
+    $tpl2 = new TemplatePower("../view/_master.htm");
+    $tpl2->prepare();
     
     //Pega dados da Sessão
     $nomeUsuario  = $_SESSION['nomeUsuario'];
@@ -95,34 +97,34 @@
             
             if( isset($codErro) && ($codErro == '0') ){
                 
-				// Setar os atributos do usuario na sessao
-				$_SESSION['idUsuario']    = $Dados->getId();
-                $_SESSION['emailUsuario'] = $email;
-                $_SESSION['nomeUsuario']  = $nome;
-                $_SESSION['fotoUsuario']  = $foto;
-				
-				//header('location: ../view/usuarios.htm');
-				header('location: ../controller/usuarios-exec.php?op=Listar');
-				exit;
+      				// Setar os atributos do usuario na sessao
+      				$_SESSION['idUsuario']    = $Dados->getId();
+                      $_SESSION['emailUsuario'] = $email;
+                      $_SESSION['nomeUsuario']  = $nome;
+                      $_SESSION['fotoUsuario']  = $foto;
+      				
+      				//header('location: ../view/usuarios.htm');
+      				header('location: ../controller/usuarios-exec.php?op=Listar');
+      				exit;
             }
             else{
-                $msg = 'Erro no Insert: '.$msgErro;
+                $msg = 'Erro ao Inserir: '.$msgErro;
                 
-                $tpl->newBlock("mensagem");
-                $tpl->assign("msg", $msg);                
+                $tpl2->newBlock("mensagem");
+                $tpl2->assign("msg", $msg);                
             }
         
         }
         else{
-            $tpl->assign("nomeCadastro", $nome);
-            $tpl->assign("sobrenomeCadastro", $sobreNome);
-            $tpl->assign("emailCadastro", $email);
-            $tpl->assign("confEmailCad", $confirmaEmail);
-            $tpl->assign("senhaCadastro", $senha);
-            $tpl->assign("dtNascimento", $dtNasc);
+            $tpl2->assign("nomeCadastro", $nome);
+            $tpl2->assign("sobrenomeCadastro", $sobreNome);
+            $tpl2->assign("emailCadastro", $email);
+            $tpl2->assign("confEmailCad", $confirmaEmail);
+            $tpl2->assign("senhaCadastro", $senha);
+            $tpl2->assign("dtNascimento", $dtNasc);
             
-            $tpl->newBlock("mensagem");
-            $tpl->assign("msg", $msg);
+            $tpl2->newBlock("mensagem");
+            $tpl2->assign("msg", $msg);
             
         }
     }
@@ -133,8 +135,10 @@
     /******************************************************
      * Exclusão de Usuários
     ******************************************************/
-    
-    $tpl->printToScreen(); 
+    if( empty($msg) )
+      $tpl->printToScreen();
+    else
+      $tpl2->printToScreen();
 
     /******************************************************
      * FUNÇÕES
